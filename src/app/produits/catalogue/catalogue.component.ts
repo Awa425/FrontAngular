@@ -10,13 +10,16 @@ import { Produits } from '../interfaces/produit.model';
 export class CatalogueComponent implements OnInit {
 
    
-   test!: string
+  //  detail!: number
    products!: Produits[];
    
   constructor(private pro: CatalogueService) {}
 
   ngOnInit(): void {
     this.products = this.pro.findAllProduits();
+    // this.detail = this.pro.findOneBy(6);
+    // console.log(this.detail);
+    
   }
 
 }

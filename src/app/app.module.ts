@@ -10,7 +10,16 @@ import { CatalogueComponent } from './produits/catalogue/catalogue.component';
 import { CardComponent } from './produits/catalogue/card/card.component';
 import { FiltrePipe } from './pipes/filtre.pipe';
 import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+import { AddComponent } from './produits/add/add.component';
+import { DetailComponent } from './produits/detail/detail.component';
 
+const routes: Routes=[
+  {path: '', redirectTo: '/catalogue', pathMatch: 'full'},
+  {path: 'produits', component: CatalogueComponent},
+  {path: 'produits/add', component: AddComponent},
+  {path: 'produits/:id', component: DetailComponent},
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,11 +29,14 @@ import { FormsModule } from '@angular/forms';
     CarouselComponent,
     CatalogueComponent,
     CardComponent,
-    FiltrePipe
+    FiltrePipe,
+    AddComponent,
+    DetailComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,26 @@
+.card{
+    border: 2px solid #D15E11;
+    border-top-left-radius: 10%;
+    border-top-right-radius: 10%;
+}
+.head{
+    padding: 2px;
+    display: flex;
+    justify-content: space-between;
+}
+.plus{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #D15E11;
+    margin-left: 5%;
+}
+.prix{
+    background-color: #D15E11;
+    margin-right: 10%;
+}
+.detail{
+    background-color: #D15E11;
+}
+hr{
+    color: #D15E11;
+}

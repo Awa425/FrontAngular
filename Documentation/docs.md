@@ -25,10 +25,21 @@
 # Installation bootstrap dans angular: 
 ` npm install bootstrap`
 
-# Ensiute on l'import dans le style.css 
+# Ensuite on l'import dans le style.css 
 ` @import "~bootstrap/dist/css/bootstrap.css"`
 
 # Pipe : ` Fonction qui transforme l'affichage d'une donnee dans le html`
 # Filtre avec les Pipes
 
 # Service: ` On l'utiliser si on veut partager des donnees (c'est un fournisseur de donnees)`
+
+# Routes: 
+` 1. Aller dans AppModule et definir votre tabRoute de route et chaque route represente un objet : `
+* const tabRoute: Route[ {path: 'produits', component: CatalogComponent}, {},... ]
+
+` 2. Dans le import en bas, on met ce qui permet de gerer les route sur angular `
+* RouterModule.forRoot(tabRoute)
+
+` 2. Dire ou est ce qu'on charge ces composant: Dans AppComponent.html, on met :`
+* <router-outlet></router-outlet>
+# NB: ` Ne faut pas utiliser les href (chargement page) mais plutot routerLink(empeche le chargement)`

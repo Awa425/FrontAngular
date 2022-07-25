@@ -1,12 +1,12 @@
-<div class="card" style="width: 18rem;">
-    <div class="container">
-        <span class="float-right " style="width: 5em;">+</span>
-        <span class="text-center btb btn-sm bg-primary " style="width: 5em;" [innerText]="prod.prix"></span>
+<div class="card">
+    <div class="head container">
+        <span class="plus" >+</span>
+        <span class=" prix text-center  btn"  [innerText]="prod.prix"></span>
     </div>
     <img class="card-img-top" [src]="prod.image" alt="Card image cap">
     <div class="card-body">
         <hr>
       <h5 class="card-title text-center">{{ prod.nom }}</h5> <hr>
-      <a href="#" class="btn btn-primary float-left">Voir Detail</a>
+      <a [routerLink]="['/produits', prod.id]" class=" detail btn float-left">Voir Detail</a>
     </div>
 </div>

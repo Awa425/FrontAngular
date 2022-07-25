@@ -3,5 +3,6 @@ export interface Produits{
     nom: string;
     image:string;
     prix: number;
-    etat: boolean
+    etat: boolean;
+    quantite: number
 }
