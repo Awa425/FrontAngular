@@ -15,25 +15,12 @@ export class CatalogueService {
 
   private products: Produits[] = [
     { 
-      id : 1,
-      nom : "Burger simple",
-      prix: 1000, 
-      image:"https://source.unsplash.com/1080x720/?burger", 
-      etat : true, 
-      quantite: 1
-    },
-    { 
-      id : 2, 
-      nom : "Burger double",
-      prix: 2000, 
-      image:'https://source.unsplash.com/1080x720/?burger', 
-      etat : true, 
-      quantite: 2
-    },
-    { id : 3, nom : "Burger simple",prix: 1000, image:'https://source.unsplash.com/1080x720/?pizza', etat : true, quantite: 1},
-    { id : 4, nom : "Burger double",prix: 2000, image:'https://source.unsplash.com/1080x720/?pizza', etat : true, quantite: 4},
+      id : 1, nom : "Burger simple",prix: 1000, image:"https://source.unsplash.com/1080x720/?burger", etat : true, quantite: 1},
+    { id : 2, nom : "Burger double",prix: 2000, image:'https://source.unsplash.com/1080x720/?burger', etat : true, quantite: 2},
+    { id : 3, nom : "Burger simple",prix: 1000, image:'https://source.unsplash.com/1080x720/?burger', etat : true, quantite: 1},
+    { id : 4, nom : "Burger double",prix: 2000, image:'https://source.unsplash.com/1080x720/?burger', etat : true, quantite: 4},
     { id : 5, nom : "Burger simple",prix: 1000, image:'https://source.unsplash.com/1080x720/?burger', etat : true, quantite: 1},
-    { id : 6, nom : "Burger double",prix: 2000, image:'https://source.unsplash.com/1080x720/?pizza', etat : true, quantite: 1},
+    { id : 6, nom : "Burger double",prix: 2000, image:'https://source.unsplash.com/1080x720/?burger', etat : true, quantite: 1},
     { id : 7, nom : "Burger simple",prix: 2000, image:'https://source.unsplash.com/1080x720/?burger', etat : true, quantite: 2},
     { id : 8, nom : "Burger simple",prix: 2000, image:'https://source.unsplash.com/1080x720/?burger', etat : true, quantite: 1},
  ];
