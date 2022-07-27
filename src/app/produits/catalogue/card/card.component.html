@@ -1,12 +1,29 @@
-<div class="card">
-    <div class="head container">
-        <span class="plus" >+</span>
-        <span class=" prix text-center  btn"  [innerText]="prod.prix"></span>
-    </div>
-    <img class="card-img-top" [src]="prod.image" alt="Card image cap">
-    <div class="card-body">
-        <hr>
-      <h5 class="card-title text-center">{{ prod.nom }}</h5> <hr>
-      <a [routerLink]="['/produits', prod.id]" class=" detail btn float-left">Voir Detail</a>
-    </div>
-</div>
+<!-- ***********************Nos Menu ******************************** -->
+
+      <div class="car menu-item">
+        <a href="assets/img/menu/menu-item-6.png" class="glightbox"><img [src]="'data:image/jpg;base64,' + prod.image" alt="Card image cap" class="menu-img img-fluid" alt=""></a>
+        <h4>{{ prod.nom }}</h4>
+        <p class="ingredients">
+          Lorem, deren
+        </p>
+        <p class="price" [innerText]="prod.prix"></p>
+        <div class="d-flex">
+            <span [routerLink]="['/produits', prod.id]" >Voir Detail</span>
+            <span>+</span>
+        </div>
+      </div><!-- Menu Item -->
+   
+
+<!-- ***********************Nos Menu ******************************** -->
+ 
+      
+
+
+
+
+
+
+
+
+
+

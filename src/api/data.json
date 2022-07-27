@@ -1,0 +1,65 @@
+{
+    
+        "burger": [
+            {
+                "id":1,
+                "nom": "Burger Simple",
+                "prix": 1500,
+                "image": "https://source.unsplash.com/1080x720/?burger"
+            } ,
+            {
+                "id":2,
+                "nom": "Burger Double",
+                "prix": 2000,
+                "image": "https://source.unsplash.com/1080x720/?burger"
+            },
+            {
+                "id":3,
+                "nom": "Burger Simple",
+                "prix": 2500,
+                "image": "https://source.unsplash.com/1080x720/?burger"
+            }
+        ] ,  
+
+        "menu": [
+            { 
+                "id":4,
+                "nom": "Menu Complet",
+                "prix": 0,
+                "image": "https://source.unsplash.com/1080x720/?burger",   
+                "burger": {
+                    "id":2,
+                    "nom": "Burger double",
+                    "prix": 8000,
+                    "image": "https://source.unsplash.com/1080x720/?burger"
+                }
+            },
+            { 
+                "id":5,
+                "nom": "Menu Complet",
+                "prix": 5000,
+                "image": "https://source.unsplash.com/1080x720/?burger",   
+                "burger": {
+                    "id":3,
+                    "nom": "Burger double",
+                    "prix": 0,
+                    "image": "https://source.unsplash.com/1080x720/?burger"
+                }
+            },
+            { 
+                "id":6,
+                "nom": "Menu Complet",
+                "prix": 0,
+                "image": "https://source.unsplash.com/1080x720/?burger",   
+                "burger": {
+                    "id":2,
+                    "nom": "Burger double",
+                    "prix": 0,
+                    "image": "https://source.unsplash.com/1080x720/?burger"
+                }
+            }
+        ]
+    
+        
+    
+    }

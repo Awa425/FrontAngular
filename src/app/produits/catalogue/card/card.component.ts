@@ -8,7 +8,7 @@ import { Produits } from '../../interfaces/produit.model';
 })
 export class CardComponent implements OnInit {
 
-  @Input() prod!: Produits;
+  @Input() prod!: any;
 
   constructor() { }
 
@@ -17,7 +17,7 @@ export class CardComponent implements OnInit {
 
   // separateur(name: number, separateur: string): void {
   //   let nom: string = name.toString();
-  //   var rege
+  //   
   // }
 
 }

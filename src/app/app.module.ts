@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -13,9 +14,11 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { AddComponent } from './produits/add/add.component';
 import { DetailComponent } from './produits/detail/detail.component';
+import { StoreModule } from '@ngrx/store';
+import { Cart } from './panier/cart.action/cart.action.component';
 
 const routes: Routes=[
-  {path: '', redirectTo: '/catalogue', pathMatch: 'full'},
+  {path: '', redirectTo: '/produits', pathMatch: 'full'},
   {path: 'produits', component: CatalogueComponent},
   {path: 'produits/add', component: AddComponent},
   {path: 'produits/:id', component: DetailComponent},
@@ -31,12 +34,16 @@ const routes: Routes=[
     CardComponent,
     FiltrePipe,
     AddComponent,
-    DetailComponent
+    DetailComponent,
+    Cart.ActionComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    HttpClientModule,
+    StoreModule.forRoot({}, {}),
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

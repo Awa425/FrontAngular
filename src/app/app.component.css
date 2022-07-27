@@ -1,4 +1,19 @@
-.head{
+/* .head{
     position: relative;
     margin-bottom: 5%;
+}
+.div-cat{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5em;
+}
+.charge{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+app-catalogue
+{
+    display: flex;  
 }
