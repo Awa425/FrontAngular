@@ -1,17 +1,17 @@
 <section id="menu" class="menu">
-  <div class="container" >
-    <div class="section-header"> 
+  <div class="container">
+    <div class="section-header">
       <h2 class="text-dark">Nos Produits</h2>
     </div>
-    <h5>Nos Burgers</h5> 
+    <h5>Nos Burgers</h5>
     <div class="d-flex flex-wrap">
-      <app-card class="col-4 menu-item carde" *ngFor=" let m of burger" [prod]="m"></app-card>
+      <app-card  class="col-4 menu-item carde" *ngFor=" let b of burger" [prod]="b"></app-card>
     </div>
     <hr>
     <h5>Nos Menus</h5>
     <div class="d-flex flex-wrap">
-      <app-card class="col-4 menu-item carde" *ngFor=" let b of menu" [prod]="b"></app-card>
-    </div> 
-      
+      <app-card class="col-4 menu-item carde" *ngFor=" let m of menu" [prod]="m"></app-card>
+    </div>
+
   </div>
 </section><!-- End Menu Section -->

@@ -15,14 +15,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddComponent } from './produits/add/add.component';
 import { DetailComponent } from './produits/detail/detail.component';
 import { StoreModule } from '@ngrx/store';
-import { Cart } from './panier/cart.action/cart.action.component';
+import { PanierComponent } from './panier/panier.component';
+import { AppRoutingModule } from './app-routing.module';
 
-const routes: Routes=[
-  {path: '', redirectTo: '/produits', pathMatch: 'full'},
-  {path: 'produits', component: CatalogueComponent},
-  {path: 'produits/add', component: AddComponent},
-  {path: 'produits/:id', component: DetailComponent},
-];
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,14 +31,16 @@ const routes: Routes=[
     FiltrePipe,
     AddComponent,
     DetailComponent,
-    Cart.ActionComponent
+    PanierComponent,
+ 
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(routes),
+    RouterModule,
     HttpClientModule,
     StoreModule.forRoot({}, {}),
+    AppRoutingModule,
     
   ],
   providers: [],

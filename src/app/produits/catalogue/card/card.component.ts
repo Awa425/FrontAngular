@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CartService } from 'src/app/service/cart.service';
+import { CatalogueService } from 'src/app/service/catalogue.service';
 import { Produits } from '../../interfaces/produit.model';
 
 @Component({
@@ -9,15 +11,24 @@ import { Produits } from '../../interfaces/produit.model';
 export class CardComponent implements OnInit {
 
   @Input() prod!: any;
+  @Input() bool!: boolean;
+   test!: Produits
 
-  constructor() { }
+  constructor(private cartService: CartService, private pro: CatalogueService) { }
 
   ngOnInit(): void {
+    this.bool=true
+    // console.log(this.bool);
+    
+    this.pro.getProduis().subscribe(
+      // data => {console.log(data);
+      // }
+    );
+
+    
   }
 
-  // separateur(name: number, separateur: string): void {
-  //   let nom: string = name.toString();
-  //   
-  // }
-
+  addPanier(produit:any) {
+    this.cartService.addProdToCart(produit);
+  }
 }

@@ -1,5 +1,5 @@
 
-<div class="row">
+<div *ngIf="prod.type=='BURGER'" class="row">
     <div class="col-md-4 card">
         <img class="card-img-top" [src]="'data:image/jpg;base64,' + prod.image" alt="Card image cap">
     </div>
@@ -7,5 +7,42 @@
         <h2 class="text-center">Detail</h2>
         <h5 class="card-title text-center">{{'Nom : '+ prod.nom }}</h5>
         <h5 class="card-title text-center">{{'Prix : '+ prod.prix }}</h5>
+    </div>
+    <div class="card">
+        <div class="card-body">
+          <button type="button" (click)="addPanier(prod)" routerLink="/panier" class="btn btn-warning btn-block btn-lg" style="float: right;">Ajouter au panier</button>
+        </div>
+    </div>
+</div>
+
+
+
+<div *ngIf="prod.type=='MENU'" class="row">
+    <div class="col-md-4 card">
+        <img class="card-img-top" [src]="'data:image/jpg;base64,' + prod.image" alt="Card image cap">
+    </div>
+    <div class="col-md-8">
+        <h2 class="text-center">Detail</h2>
+        <h5 class="card-title text-center">{{'Nom : '+ prod.nom }}</h5>
+        <h5 class="card-title text-center">{{'Prix : '+ prod.prix }}</h5>
+    </div>
+    <div *ngFor="let menuTaille of prod.menuTailles">
+        <p>Veuillez choisir {{menuTaille.quantite}} boisson</p>.
+            <div class="boisson d-flex">
+                <div class="  mr-5" *ngFor="let b of menuTaille.taille.tailleBoissons"> 
+                    <div class="form-check">
+                        <label class=" boissonNom form-check-label" for="flexCheckDefault">
+                            {{b.boisson.nom}}
+                        </label>
+                        <input (click)="checkb($event)" class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <img width="45px"  [src]="'data:image/jpg;base64,' + b.boisson.image" alt="Card image cap">   
+                      </div>
+                </div>
+            </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+          <button (click)="addPanier(prod)" *ngIf="quantite==index" type="button" class="btn btn-warning btn-block btn-lg" style="float: right;" routerLink="/panier">Ajouter au panier</button>
+        </div>
     </div>
 </div>

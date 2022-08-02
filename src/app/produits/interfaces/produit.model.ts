@@ -4,7 +4,8 @@ export interface Produits{
     image:string;
     prix: number;
     etat: boolean;
-    quantite: number
+    quantite: number;
+    type: string;
 }
 export interface Catalogue{
     burger: Produits[];
@@ -18,14 +19,57 @@ export interface Burger{
     prix: number;
     etat: boolean;
     quantite: number
+    type: string;
+   
 }
-export interface menu{
+export interface Boisson{
+    id:number;
+    nom: string;
+    image:string;
+    prix: number;
+    etat: boolean;
+    quantite: number
+    type: string;  
+}
+export interface Fritte{
+    id:number;
+    nom: string;
+    image:string;
+    prix: number;
+    etat: boolean;
+    quantite: number
+    type: string;
+   
+}
+export interface Menu{
     id:number;
     nom: string;
     image:string;
     prix: number;
     etat: boolean;
     quantite: number;
-    burger: Burger
+    burger: Burger[]
+    boisson: Boisson[];
+    fritte: Fritte[];
+    type: string;
 }
+
+export interface Zone{
+    nomZone: string;
+    prixLivraison: number;
+}
+
+
+
+export interface Commande{
+    zone: Zone;
+    ligneCommandes:[
+        {
+            "quanite": 0;
+            "produit": Produits;
+        }
+    ]
+}
+
+
 

@@ -1,0 +1,143 @@
+     
+
+<section>
+  <!-- *************** Ligne de commade ******************* -->
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col">
+          <p><span class="h2">Shopping Cart </span><span class="h4">(1 item in your cart)</span></p>
+          <div class="card mb-4" *ngFor="let item of (items$ | async)">
+            <div class="card-body p-4">
+  
+              <div class="row align-items-center">
+                <div class="col-md-2">
+                  <img [src]="'data:image/jpg;base64,' +item.image"
+                    class="img-fluid" alt="Generic placeholder image">
+                </div>
+                <div class="col-md-2 d-flex justify-content-center">
+                  <div>
+                    <p class="small text-muted mb-4 pb-2">Nom</p>
+                    <p class="lead fw-normal mb-0">{{item.nom}}</p>
+                  </div>
+                </div>
+                <div class="col-md-2 d-flex justify-content-center">
+                  <div>
+                    <p class="small text-muted mb-4 pb-2">Quantity</p>
+                    <div class="d-flex flex-row">
+                        <button class="btn btn-link px-2"
+                          onclick="this.parentNode.querySelector('input[type=number]').stepDown()" (click)="diminueQte(item)">
+                          <i class="fas fa-minus"></i>
+                        </button>
+    
+                        <input id="form1" min="0" name="quantity" [value]="item.quantite" type="number"
+                          class="form-control form-control-sm" style="width: 50px;" />
+    
+                        <button class="btn btn-link px-2"
+                          onclick="this.parentNode.querySelector('input[type=number]').stepUp()" (click)="addToCart(item)">
+                          <i class="fas fa-plus"></i>
+                        </button>
+                      </div>
+                  </div>
+                </div>
+                <div class="col-md-2 d-flex justify-content-center">
+                  <div>
+                    <p class="small text-muted mb-4 pb-2">Price</p>
+                    <p class="lead fw-normal mb-0">{{item.prix}}</p>
+                  </div>
+                </div>
+                <div class="col-md-2 d-flex justify-content-center">
+                  <div>
+                    <p class="small text-muted mb-4 pb-2">Total</p>
+                    <p class="lead fw-normal mb-0">{{item.prix * item.quantite}}</p>
+                  </div>
+                </div>
+                
+                <div class="col-md-2 d-flex justify-content-center" (click)="removeProd(item)">
+                    <i  class="fa-thin fa-trash-can"></i>
+                </div>
+              </div>
+  
+            </div>
+          </div>
+
+  <!-- *************** Prix total ******************* -->
+          <div class="card mb-5">
+            <div class="card-body p-4">
+              <div class="float-end">
+                <p class="mb-0 me-5 d-flex align-items-center">
+                  <span class="small text-muted me-2">Prix total:</span> <span
+                    class="lead fw-normal">{{prixTotal}}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+<!-- ******************** Livraison ou sur place *********************** -->
+          <button type="button" class="btn btn-primary"  data-bs-target="#exampleModal">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" (click)="zoneCheck(0)" (change)="surPlace($event)">
+              <label class="form-check-label" for="flexRadioDefault2">
+                Sur place
+              </label>
+            </div>
+          </button> <br><br>
+          <!-- ******************** modal Pour Zone ************************** -->
+          <!-- Button trigger modal -->
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" (click)="aLivrer()">
+              <label class="form-check-label" for="flexRadioDefault1">
+                A livrer
+              </label>
+            </div>
+          </button>
+
+<!-- ********************** Modal *****************-->
+        <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Zones</th>
+                      <th scope="col">Prix</th>
+                      <th scope="col">Option</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let z of zones">
+                      <th scope="row">{{z.prix_livraison}}</th>
+                      <td>{{z.nom_zone}}</td>
+                      <td>
+                        <input class="form-check-input" type="radio" [(value)]="z.id"  name="flexRadioDefault" id="flexRadioDefault2" (click)="zoneCheck(z.id)">
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>              
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+<!-- ******************** Passer la commade *********************** -->
+
+          <div class="d-flex justify-content-end">
+            <button type="button" class="btn btn-light btn-lg me-2" routerLink="/produits">Continue votre achat</button>
+            <div class="card">
+              <div class="card-body">
+                <button type="button" *ngIf="(zo!=0)||(surPlac)" class="btn btn-warning btn-block btn-lg" style="float: right;" routerLink="/panier" (click)="commander()">Passer la commande</button>
+              </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

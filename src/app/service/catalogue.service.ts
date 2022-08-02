@@ -2,15 +2,20 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { Produits } from '../produits/interfaces/produit.model';
+import { Menu, Produits } from '../produits/interfaces/produit.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class CatalogueService {
 
+export class CatalogueService {
+  x!: string
   // private DATA_API = 'api/data.json/'
   private DATA_API = 'http://127.0.0.1:8000/api/catalogue'
+  private DATAS = 'http://127.0.0.1:8000/api/produits'
+  private DATA_BURGER = 'http://127.0.0.1:8000/api/burgers';
+  private DATA_MENU = 'http://127.0.0.1:8000/api/menus';
+  private ALL_DATA = 'http://127.0.0.1:8000/api/'+this.x;
 
   constructor(private MyHttp: HttpClient) { }
 
@@ -22,14 +27,30 @@ getProduis():Observable<any>{
   //   catchError(this.handleError)
   // );
 }
+getAll(x:string):Observable<any>{
+  return this.MyHttp.get<any>(this.ALL_DATA+x)
+}
+
 
 findOneBy(id: number, discrim: Produits[]){
   return discrim.find(
         (p:Produits)=>{ return p.id === id; }
       );
 }
+getOneBy(id: number, discrim: Produits[]){
+   discrim.find(
+        (p:Produits)=>{ return p.id === id; }
+      );
+}
 
 
+// findAll():Observable<Produits[]>{
+//   return this.MyHttp.get<Produits[]>(this.DATAS);
+// }
+
+// getMenu():Observable<Produits>{
+//   return this.MyHttp.get<Produits>(this.DATA_MENU);
+// }
 
 private handleError(error: HttpErrorResponse) {
   if (error.status === 0) {

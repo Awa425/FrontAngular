@@ -1,0 +1,13 @@
+.boisson{
+    justify-content: space-around;
+    align-items: center;
+    height: 3em;
+    background-color: #eeeded;
+}
+.boissonNom{
+    margin-right: 1em;
+}
+p{
+    text-align: center;
+    font-weight: bold;
+}

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from 'src/app/service/cart.service';
 import { CatalogueService } from 'src/app/service/catalogue.service';
-import { Burger, menu, Produits } from '../interfaces/produit.model';
+import { Burger, Menu, Produits } from '../interfaces/produit.model';
 
 @Component({
   selector: 'app-catalogue',
@@ -10,16 +11,17 @@ import { Burger, menu, Produits } from '../interfaces/produit.model';
 export class CatalogueComponent implements OnInit {
    menu!: any;
    burger!: any;
-   errMsg!: string;
+   type!:number;
+   produits!: Produits[]
+  //  errMsg!: string;
   constructor(private pro: CatalogueService) {}
+
   ngOnInit(): void {
     this.pro.getProduis().subscribe(
-      catalogue => {
+      catalogue => {  
         this.burger=catalogue[0];
-        this.menu=catalogue[1];
-      console.log(catalogue);
+        this.menu=catalogue[1];   
      }
-    )  
+    ) 
   }
-
 }

@@ -1,4 +1,4 @@
-<!-- ***********************Nos Menu ******************************** -->
+<!-- ***********************Nos Produits ******************************** -->
 
       <div class="car menu-item">
         <a href="assets/img/menu/menu-item-6.png" class="glightbox"><img [src]="'data:image/jpg;base64,' + prod.image" alt="Card image cap" class="menu-img img-fluid" alt=""></a>
@@ -7,9 +7,10 @@
           Lorem, deren
         </p>
         <p class="price" [innerText]="prod.prix"></p>
-        <div class="d-flex">
+        <div class="d-flex" style="justify-content: space-between; font-weight: bold">
             <span [routerLink]="['/produits', prod.id]" >Voir Detail</span>
-            <span>+</span>
+           
+            <button *ngIf="prod.type=='BURGER'" (click)="addPanier(prod)">+</button>
         </div>
       </div><!-- Menu Item -->
    
