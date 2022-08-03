@@ -15,7 +15,7 @@ export class CatalogueService {
   private DATA_FRITTES = 'http://127.0.0.1:8000/api/frittes'
   private DATA_BOISSONS = 'http://127.0.0.1:8000/api/tailles';
   // private DATA_TBoisson = 'http://127.0.0.1:8000/api/tailles/{id}/taille_boissons';
-  private ALL_DATA = 'http://127.0.0.1:8000/api/'+this.x;
+  private ALL_DATA = 'http://127.0.0.1:8000/api/produits'
 
   constructor(private MyHttp: HttpClient) { }
 
@@ -42,16 +42,19 @@ getAll(x:string):Observable<any>{
 }
 
 
+
 findOneBy(id: number, discrim: Produits[]){
   return discrim.find(
         (p:Produits)=>{ return p.id === id; }
       );
 }
+
 getOneBy(id: number, discrim: Produits[]){
    discrim.find(
         (p:Produits)=>{ return p.id === id; }
       );
 }
+
 
 
 // findAll():Observable<Produits[]>{

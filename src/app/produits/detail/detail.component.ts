@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { CartService } from 'src/app/service/cart.service';
 import { CatalogueService } from 'src/app/service/catalogue.service';
 import { CommandeService } from 'src/app/service/commande.service';
@@ -24,6 +24,7 @@ export class DetailComponent implements OnInit {
   fritte:any[]=[]
   complement:any[]=[]
   prod!: any;
+  type!: string;
   quantite: number = 0;
   index: number=0;
   tab: number[]=[]
@@ -53,7 +54,8 @@ export class DetailComponent implements OnInit {
         this.route.navigate(['/produits']);
      }
     )
-    // this.commandeService.getQteBoissonChoisi(this.somQte)
+
+    // ***************Affichage des complements ****************
     this.produits.getFrittes().subscribe(
       fritte =>{ 
         this.fritte=fritte;       
@@ -63,15 +65,15 @@ export class DetailComponent implements OnInit {
       taille =>{  
         this.taille=taille
         for (let i = 0; i < taille.length; i++) {
-          this.produits.getTailleBoisson(taille[i].id).subscribe(boisson=>{
-            console.log(boisson[i].boisson.nom);
-            
+          this.produits.getTailleBoisson(taille[i].id).subscribe(boisson=>{            
            this.boisson=boisson
           })
         }
       }
     )
 
+    // *************** Observable pour l'url ************
+      this.getProdSimilaire()
   }
 
 
@@ -82,6 +84,35 @@ export class DetailComponent implements OnInit {
     else{
       this.index--;
     }  
+  }
+
+  getProdSimilaire(){
+    this.paramRoute.params.subscribe(
+      (par: Params)=>{
+          const id = +par['id']  
+          this.param = +par['id'];
+          this.produits.getProduis().subscribe(
+          catalogue => {
+            this.burger=catalogue[0];
+            this.menu=catalogue[1];
+            if(this.produits.findOneBy(this.param, this.burger)){
+              this.prod=this.produits.findOneBy(this.param, this.burger); 
+            }
+            else if(this.produits.findOneBy(this.param, this.menu)){ 
+              this.prod=this.produits.findOneBy(this.param, this.menu);
+              
+              for (let index = 0; index < this.prod.menuTailles.length; index++) {
+                const element = this.prod.menuTailles[index];
+                this.quantite=element.quantite;
+              }
+            }
+            else
+            this.route.navigate(['/produits']);
+          }
+        )
+        
+      }
+    )
   }
 
   test(e: any){ 
@@ -95,4 +126,6 @@ export class DetailComponent implements OnInit {
   addPanier(produit:any) {
     this.cartService.addProdToCart(produit);
   }
+
+ 
 }

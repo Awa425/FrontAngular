@@ -13,10 +13,8 @@
                 <tr *ngFor="let c of commandeClient">     
                     <td>{{c.date}}</td>
                     <td>{{c.etat}}</td>
-                    <td><a [routerLink]="['/commandes',91]" class="btn btn-outline-warning" >Detail</a></td>
-                    <td><a [routerLink]="['/commandes',91,'annuler']" class="btn btn-outline-danger" >Annuler</a></td>
-                    <!-- <td><button type="button" class="btn btn-outline-warning" routerLink="">Detail</button></td>
-                    <td *ngIf="c.etat=='en cours'"><button type="button" class="btn btn-outline-danger" (click)="changeEta(c.id)">Annuler</button></td> -->
+                    <td><a [routerLink]="['/commandes',c.id]" class="btn btn-outline-warning" >Detail</a></td>
+                    <td><a [routerLink]="['/commandes',c.id,'annuler']" class="btn btn-outline-danger" >Annuler</a></td>
                 </tr>
             </tbody>
         </table>

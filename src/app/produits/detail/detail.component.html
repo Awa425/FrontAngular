@@ -7,6 +7,12 @@
         <h2 class="text-center">Detail</h2>
         <h5 class="card-title text-center">{{'Nom : '+ prod.nom }}</h5>
         <h5 class="card-title text-center">{{'Prix : '+ prod.prix }}</h5>
+        <div >
+            <h4>Produits similaires</h4>
+            <ul>
+                <li *ngFor="let bur of burger"><a [routerLink]="['/produits',+bur.id]">Produits Similaires</a></li>
+            </ul>
+        </div>
     </div>
     <div class="card">
         <div class="card-body">
@@ -25,6 +31,12 @@
         <h2 class="text-center">Detail</h2>
         <h5 class="card-title text-center">{{'Nom : '+ prod.nom }}</h5>
         <h5 class="card-title text-center">{{'Prix : '+ prod.prix }}</h5>
+        <div>
+            <h4>Produits similaires</h4>
+            <ul>
+                <li *ngFor="let me of menu"><a [routerLink]="['/produits',+me.id]" >Produits Similaires</a></li>
+            </ul>
+        </div>
     </div>
     <div *ngFor="let menuTaille of prod.menuTailles">
         <p>Veuillez choisir {{menuTaille.quantite}} boisson</p>.
