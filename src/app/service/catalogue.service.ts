@@ -12,9 +12,9 @@ export class CatalogueService {
   x!: string
   // private DATA_API = 'api/data.json/'
   private DATA_API = 'http://127.0.0.1:8000/api/catalogue'
-  private DATAS = 'http://127.0.0.1:8000/api/produits'
-  private DATA_BURGER = 'http://127.0.0.1:8000/api/burgers';
-  private DATA_MENU = 'http://127.0.0.1:8000/api/menus';
+  private DATA_FRITTES = 'http://127.0.0.1:8000/api/frittes'
+  private DATA_BOISSONS = 'http://127.0.0.1:8000/api/tailles';
+  // private DATA_TBoisson = 'http://127.0.0.1:8000/api/tailles/{id}/taille_boissons';
   private ALL_DATA = 'http://127.0.0.1:8000/api/'+this.x;
 
   constructor(private MyHttp: HttpClient) { }
@@ -27,6 +27,16 @@ getProduis():Observable<any>{
   //   catchError(this.handleError)
   // );
 }
+getFrittes():Observable<any>{
+  return this.MyHttp.get<any>(this.DATA_FRITTES)
+}
+getBoissons():Observable<any>{
+  return this.MyHttp.get<any>(this.DATA_BOISSONS)
+}
+getTailleBoisson(id: number):Observable<any>{
+  return this.MyHttp.get<any>('http://127.0.0.1:8000/api/tailles/'+id+'/taille_boissons')
+}
+
 getAll(x:string):Observable<any>{
   return this.MyHttp.get<any>(this.ALL_DATA+x)
 }

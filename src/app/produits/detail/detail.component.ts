@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from 'src/app/service/cart.service';
 import { CatalogueService } from 'src/app/service/catalogue.service';
+import { CommandeService } from 'src/app/service/commande.service';
 import { ZoneService } from 'src/app/service/zone.service';
 import { Produits } from '../interfaces/produit.model';
 
@@ -17,12 +18,19 @@ export class DetailComponent implements OnInit {
   param!: number;
   burger!:any
   menu!:any
+  taille!:any[]
+  nomTaille!:string[]
+  boisson:any[]=[]
+  fritte:any[]=[]
+  complement:any[]=[]
   prod!: any;
   quantite: number = 0;
   index: number=0;
+  tab: number[]=[]
+  somQte: number=0;
  
 //ActivatedRoute me renvoie les parametre de l'url
-  constructor(private paramRoute: ActivatedRoute, private produits: CatalogueService, private route: Router,private cartService: CartService, private zoneService: ZoneService) { }
+  constructor(private paramRoute: ActivatedRoute, private produits: CatalogueService, private route: Router,private cartService: CartService, private commandeService: CommandeService) { }
 
   ngOnInit(): void {
     this.param = +this.paramRoute.snapshot.params['id'];
@@ -45,6 +53,24 @@ export class DetailComponent implements OnInit {
         this.route.navigate(['/produits']);
      }
     )
+    // this.commandeService.getQteBoissonChoisi(this.somQte)
+    this.produits.getFrittes().subscribe(
+      fritte =>{ 
+        this.fritte=fritte;       
+      }
+    )
+    this.produits.getBoissons().subscribe(
+      taille =>{  
+        this.taille=taille
+        for (let i = 0; i < taille.length; i++) {
+          this.produits.getTailleBoisson(taille[i].id).subscribe(boisson=>{
+            console.log(boisson[i].boisson.nom);
+            
+           this.boisson=boisson
+          })
+        }
+      }
+    )
 
   }
 
@@ -52,15 +78,20 @@ export class DetailComponent implements OnInit {
   checkb(e:any){
     if(e.target.checked){ 
       this.index++;
-      console.log(this.index);  
     }
     else{
       this.index--;
-      console.log(this.index);
-    } 
-    
+    }  
   }
 
+  test(e: any){ 
+    const nbrElt= e.target.parentElement.parentElement.parentElement.childElementCount;
+    this.somQte=0;
+    for (let i = 0; i < nbrElt; i++) {
+    this.somQte+= +(e.target.parentElement.parentElement.parentElement.children[i].children[0].childNodes[3].value) ;
+    }
+  }
+// *************** functions *****************
   addPanier(produit:any) {
     this.cartService.addProdToCart(produit);
   }

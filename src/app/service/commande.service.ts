@@ -1,27 +1,57 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, take, throwError } from 'rxjs';
 import { Commande } from '../produits/interfaces/produit.model';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class CommandeService {
+  private qteSubject = new BehaviorSubject<number[]>([]);
+  qteChoisi = this.qteSubject.asObservable();
+  qteCheck: number=0;
+
   private DATA_COMMANDES = 'http://127.0.0.1:8000/api/commandes';
 
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    let qteExist = JSON.parse(localStorage.getItem('qteChoisi') || '[]');
+    if (!qteExist) {
+      qteExist = [];
+    }
+    this.qteSubject.next(qteExist);
+   }
 
   addCommande(commande: any): Observable<any> {
     return this.http.post<any>(this.DATA_COMMANDES, commande)
-    // .pipe(
-    //   catchError(this.handleError('addCommande', commande))
-    // );
   }
 
   getCommande():Observable<any>{
     return this.http.get<any>(this.DATA_COMMANDES)
   }
+
+  getCommandeClient(id: number):Observable<any>{
+    return this.http.get<any>('http://127.0.0.1:8000/api/clients/'+id+'/commandes')
+  }
+ 
+  getQteBoissonChoisi(qte: number){
+  return localStorage.setItem('QteChoisi', JSON.stringify(qte))
+} 
+
+changeEtat(body: any, id: number):Observable<any>{
+  return this.http.patch<any>('http://127.0.0.1:8000/api/commandes/'+id, body)
+}
+
+
+
+
+
+
+
+
+
+
+
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {

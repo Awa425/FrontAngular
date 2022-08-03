@@ -124,7 +124,7 @@ export class PanierComponent implements OnInit {
           }
         }
         this.http.post<any>('http://127.0.0.1:8000/api/commandes', this.body).subscribe();
-        // removeProd(data[index])
+        // this.dataCart.clearCart(data);
       }
     })
   }

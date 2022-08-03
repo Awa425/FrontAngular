@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-sm-7">
+        <p>Liste de mes commandes</p>
+        <table class="table container">
+            <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Etat</th>
+                <th scope="col" colspan="2" class="text-center">Options</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let c of commandeClient">     
+                    <td>{{c.date}}</td>
+                    <td>{{c.etat}}</td>
+                    <td><a [routerLink]="['/commandes',91]" class="btn btn-outline-warning" >Detail</a></td>
+                    <td><a [routerLink]="['/commandes',91,'annuler']" class="btn btn-outline-danger" >Annuler</a></td>
+                    <!-- <td><button type="button" class="btn btn-outline-warning" routerLink="">Detail</button></td>
+                    <td *ngIf="c.etat=='en cours'"><button type="button" class="btn btn-outline-danger" (click)="changeEta(c.id)">Annuler</button></td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+
+  

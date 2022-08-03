@@ -47,6 +47,11 @@ export class CartService {
       ).subscribe();
   }
 
+  clearCart(items: any) {
+    items = [];
+    localStorage.removeItem("products")
+  }
+
   findOneBy(id: number, produit: Produits[]){
     return produit.find(
           (p:Produits)=>{ return p.id === id; }
@@ -77,20 +82,10 @@ export class CartService {
         localStorage.setItem('products', JSON.stringify(produits));
       }),
       ).subscribe();
-   
   }
 
   getItems() {
     return this. card$;
   } 
-
-
-  
-  // clearCart(card$: Produits[]) {
-  //   this.card$ = [];
-
-  //   localStorage.removeItem("cart_items")
-  // }
-
 
 }

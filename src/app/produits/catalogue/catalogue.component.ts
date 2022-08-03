@@ -13,7 +13,6 @@ export class CatalogueComponent implements OnInit {
    burger!: any;
    type!:number;
    produits!: Produits[]
-  //  errMsg!: string;
   constructor(private pro: CatalogueService) {}
 
   ngOnInit(): void {

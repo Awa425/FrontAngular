@@ -17,6 +17,9 @@ import { DetailComponent } from './produits/detail/detail.component';
 import { StoreModule } from '@ngrx/store';
 import { PanierComponent } from './panier/panier.component';
 import { AppRoutingModule } from './app-routing.module';
+import { CommandeComponent } from './commande/commande.component';
+import { ComplementComponent } from './produits/complement/complement.component';
+import { DetailCommandeComponent } from './commande/detail-commande/detail-commande.component';
 
 
 @NgModule({
@@ -32,6 +35,9 @@ import { AppRoutingModule } from './app-routing.module';
     AddComponent,
     DetailComponent,
     PanierComponent,
+    CommandeComponent,
+    ComplementComponent,
+    DetailCommandeComponent,
  
   ],
   imports: [

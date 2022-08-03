@@ -5,7 +5,7 @@
     <div class="container h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col">
-          <p><span class="h2">Shopping Cart </span><span class="h4">(1 item in your cart)</span></p>
+          <p><span class="h2">Panier </span><span class="h4"></span></p>
           <div class="card mb-4" *ngFor="let item of (items$ | async)">
             <div class="card-body p-4">
   
@@ -24,7 +24,7 @@
                   <div>
                     <p class="small text-muted mb-4 pb-2">Quantity</p>
                     <div class="d-flex flex-row">
-                        <button class="btn btn-link px-2"
+                        <button class="btn btn-link px-2" min="0"
                           onclick="this.parentNode.querySelector('input[type=number]').stepDown()" (click)="diminueQte(item)">
                           <i class="fas fa-minus"></i>
                         </button>
@@ -32,7 +32,7 @@
                         <input id="form1" min="0" name="quantity" [value]="item.quantite" type="number"
                           class="form-control form-control-sm" style="width: 50px;" />
     
-                        <button class="btn btn-link px-2"
+                        <button class="btn btn-link px-2" min="0"
                           onclick="this.parentNode.querySelector('input[type=number]').stepUp()" (click)="addToCart(item)">
                           <i class="fas fa-plus"></i>
                         </button>
@@ -50,13 +50,11 @@
                     <p class="small text-muted mb-4 pb-2">Total</p>
                     <p class="lead fw-normal mb-0">{{item.prix * item.quantite}}</p>
                   </div>
-                </div>
-                
+                </div>    
                 <div class="col-md-2 d-flex justify-content-center" (click)="removeProd(item)">
                     <i  class="fa-thin fa-trash-can"></i>
                 </div>
               </div>
-  
             </div>
           </div>
 
@@ -71,8 +69,8 @@
               </div>
             </div>
           </div>
-<!-- ******************** Livraison ou sur place *********************** -->
-          <button type="button" class="btn btn-primary"  data-bs-target="#exampleModal">
+        <!-- ********************  sur place *********************** -->
+          <button type="button" class="btn btn-outline-success"  data-bs-target="#exampleModal">
             <div class="form-check">
               <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" (click)="zoneCheck(0)" (change)="surPlace($event)">
               <label class="form-check-label" for="flexRadioDefault2">
@@ -80,9 +78,8 @@
               </label>
             </div>
           </button> <br><br>
-          <!-- ******************** modal Pour Zone ************************** -->
-          <!-- Button trigger modal -->
-          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <!-- ******************** Livraison  ************************** -->
+          <button type="button" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
             <div class="form-check">
               <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" (click)="aLivrer()">
               <label class="form-check-label" for="flexRadioDefault1">
@@ -91,7 +88,7 @@
             </div>
           </button>
 
-<!-- ********************** Modal *****************-->
+      <!-- ********************** Modal Pour Zone *****************-->
         <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -141,3 +138,7 @@
       </div>
     </div>
   </section>
+
+  <!-- *******************Nos Complements ************************-->
+
+  <app-complement></app-complement>
