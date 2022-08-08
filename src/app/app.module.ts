@@ -9,7 +9,6 @@ import { FooterComponent } from './footer/footer.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { CatalogueComponent } from './produits/catalogue/catalogue.component';
 import { CardComponent } from './produits/catalogue/card/card.component';
-import { FiltrePipe } from './pipes/filtre.pipe';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { AddComponent } from './produits/add/add.component';
@@ -20,6 +19,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { CommandeComponent } from './commande/commande.component';
 import { ComplementComponent } from './produits/complement/complement.component';
 import { DetailCommandeComponent } from './commande/detail-commande/detail-commande.component';
+import { ListeCommParDateComponent } from './commande/liste-comm-par-date/liste-comm-par-date.component';
+// search module
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -31,23 +33,24 @@ import { DetailCommandeComponent } from './commande/detail-commande/detail-comma
     CarouselComponent,
     CatalogueComponent,
     CardComponent,
-    FiltrePipe,
     AddComponent,
     DetailComponent,
     PanierComponent,
     CommandeComponent,
     ComplementComponent,
     DetailCommandeComponent,
+    ListeCommParDateComponent,
  
   ],
-  imports: [
+  imports: [   
     BrowserModule,
     FormsModule,
     RouterModule,
     HttpClientModule,
     StoreModule.forRoot({}, {}),
     AppRoutingModule,
-    
+    Ng2SearchPipeModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

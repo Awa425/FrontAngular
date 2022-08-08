@@ -27,7 +27,7 @@
 <!-- ************************* Produits similaire Burger *************************************** -->
 
     <div  class="d-flex">
-        <div class="card w-50 d-flex flex-column align-items-center" *ngFor="let me of burger.slice(0,4)" class="row mb-4 d-flex  align-items-center " style="background-color: #e4e3e3; margin: 3em;">
+        <div class="card w-50 d-flex flex-column align-items-center" *ngFor="let me of burger" class="row mb-4 d-flex  align-items-center " style="background-color: #e4e3e3; margin: 3em;">
             <div >
             <img [routerLink]="['/produits',+me.id]"
             img class="card-img-top" [src]="'data:image/jpg;base64,' + me.image" alt="Card image cap"
@@ -77,7 +77,7 @@
 
 <!-- ************************* Produits similaire Menu *************************************** -->
 <div  class="d-flex">
-    <div class="card w-50 d-flex flex-column align-items-center" *ngFor="let me of menu.slice(0,4)" class="row mb-4 d-flex  align-items-center " style="background-color: #e4e3e3; margin: 3em;">
+    <div class="card w-50 d-flex flex-column align-items-center" *ngFor="let me of menu" class="row mb-4 d-flex  align-items-center " style="background-color: #e4e3e3; margin: 3em;">
         <div >
         <img [routerLink]="['/produits',+me.id]"
         img class="card-img-top" [src]="'data:image/jpg;base64,' + me.image" alt="Card image cap"

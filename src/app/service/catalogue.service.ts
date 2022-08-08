@@ -28,6 +28,9 @@ getProduis():Observable<any>{
   //   catchError(this.handleError)
   // );
 }
+boissonTaille(){
+  return this.MyHttp.get<any>('http://127.0.0.1:8000/api/taille_boissons');
+}
 getFrittes():Observable<any>{
   return this.MyHttp.get<any>(this.DATA_FRITTES)
 }

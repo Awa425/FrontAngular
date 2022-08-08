@@ -19,9 +19,9 @@ export class DetailCommandeComponent implements OnInit {
         
         this.commandeService.getOne(id).subscribe(
           donnees=>{
-            console.log(donnees);
-            this.data=donnees;
+            // this.data=donnees;
             this.ligneComm=this.data.ligneCommande
+            console.log(this.ligneComm);
           }
         )  
       }
