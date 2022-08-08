@@ -3,9 +3,11 @@
     <div class="section-header">
       <h2 class="text-dark">Nos Produits</h2>
     </div> 
-    <input type="text" placeholder="Search" [(ngModel)]="searchText">
+    <div class="search-hero">
+      <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Search">
+    </div>
     <div class="d-flex flex-wrap" *ngFor="let pro of produits">
-      <app-card  class="col-4 menu-item carde" *ngFor=" let b of pro | filtre:searchText : 'nom' " [prod]="b"></app-card>
+      <app-card  class="col-4 menu-item carde" *ngFor=" let b of pro | filter: searchText " [prod]="b"></app-card>
     </div>
     <hr>
   </div>
