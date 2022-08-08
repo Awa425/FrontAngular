@@ -1,4 +1,14 @@
 
+<!-- *********************** Exemple card ********************* -->
+<!-- <div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+  </div> -->
+
 <div *ngIf="prod.type=='BURGER'" class="row">
     <div class="col-md-4 card">
         <img class="card-img-top" [src]="'data:image/jpg;base64,' + prod.image" alt="Card image cap">
@@ -7,21 +17,33 @@
         <h2 class="text-center">Detail</h2>
         <h5 class="card-title text-center">{{'Nom : '+ prod.nom }}</h5>
         <h5 class="card-title text-center">{{'Prix : '+ prod.prix }}</h5>
-        <div >
-            <h4>Produits similaires</h4>
-            <ul>
-                <li *ngFor="let bur of burger"><a [routerLink]="['/produits',+bur.id]">Produits Similaires</a></li>
-            </ul>
-        </div>
     </div>
     <div class="card">
         <div class="card-body">
           <button type="button" (click)="addPanier(prod)" routerLink="/panier" class="btn btn-warning btn-block btn-lg" style="float: right;">Ajouter au panier</button>
         </div>
     </div>
-</div>
 
+<!-- ************************* Produits similaire Burger *************************************** -->
 
+    <div  class="d-flex">
+        <div class="card w-50 d-flex flex-column align-items-center" *ngFor="let me of burger.slice(0,4)" class="row mb-4 d-flex  align-items-center " style="background-color: #e4e3e3; margin: 3em;">
+            <div >
+            <img [routerLink]="['/produits',+me.id]"
+            img class="card-img-top" [src]="'data:image/jpg;base64,' + me.image" alt="Card image cap"
+                class="img-fluid rounded-3">
+            </div>
+            <div class="c">
+                <h6 class="text-muted">Nom</h6>
+                <h6 class="text-black ">{{me.nom}}</h6>
+            </div>
+            <p class="price" style="color: rgba(206, 18, 18, 0.8); font-weight:bold" [innerText]="prod.prix+' FCFA'"></p>
+            <button class="btn btn-outline-warning" (click)="addPanier(me)">Ajouter au Panier</button>
+        </div> 
+    </div>
+</div> <br> <hr>
+
+<!-- ****************** Detail menu ****************** -->
 
 <div *ngIf="prod.type=='MENU'" class="row">
     <div class="col-md-4 card">
@@ -31,12 +53,6 @@
         <h2 class="text-center">Detail</h2>
         <h5 class="card-title text-center">{{'Nom : '+ prod.nom }}</h5>
         <h5 class="card-title text-center">{{'Prix : '+ prod.prix }}</h5>
-        <div>
-            <h4>Produits similaires</h4>
-            <ul>
-                <li *ngFor="let me of menu"><a [routerLink]="['/produits',+me.id]" >Produits Similaires</a></li>
-            </ul>
-        </div>
     </div>
     <div *ngFor="let menuTaille of prod.menuTailles">
         <p>Veuillez choisir {{menuTaille.quantite}} boisson</p>.
@@ -48,7 +64,7 @@
                         </label>
                         <input (click)="checkb($event)" hidden class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
                         <img width="45px"  [src]="'data:image/jpg;base64,' + b.boisson.image" alt="Card image cap">   
-                        <input id="form1" min="0" name="quantity"  type="number" class="form-control form-control-sm" style="width: 50px;" (click)="test($event)" />
+                        <input id="form1" min="0" name="quantity"  type="number" class="form-control form-control-sm" style="width: 50px;" (change)="test($event)" />
                     </div>
                 </div>
             </div>
@@ -58,7 +74,25 @@
           <button (click)="addPanier(prod)" *ngIf="quantite==somQte" type="button" class="btn btn-warning btn-block btn-lg" style="float: right;" routerLink="/panier">Ajouter au panier</button>
         </div>
     </div>
+
+<!-- ************************* Produits similaire Menu *************************************** -->
+<div  class="d-flex">
+    <div class="card w-50 d-flex flex-column align-items-center" *ngFor="let me of menu.slice(0,4)" class="row mb-4 d-flex  align-items-center " style="background-color: #e4e3e3; margin: 3em;">
+        <div >
+        <img [routerLink]="['/produits',+me.id]"
+        img class="card-img-top" [src]="'data:image/jpg;base64,' + me.image" alt="Card image cap"
+            class="img-fluid rounded-3">
+        </div>
+        <div class="c">
+            <h6 class="text-muted">Nom</h6>
+            <h6 class="text-black ">{{me.nom}}</h6>
+        </div>
+        <p class="price" style="color: rgba(206, 18, 18, 0.8); font-weight:bold" [innerText]="prod.prix+' FCFA'"></p>
+        <button class="btn btn-outline-warning" (click)="addPanier(me)">Ajouter au Panier</button>
+    </div> 
 </div>
+</div> <br> <hr>
+
 
  <!-- *******************Nos Complements ************************-->
 <app-complement></app-complement>

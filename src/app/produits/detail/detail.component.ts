@@ -35,6 +35,7 @@ export class DetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.param = +this.paramRoute.snapshot.params['id'];
+    
     this.produits.getProduis().subscribe(
       catalogue => {
         this.burger=catalogue[0];

@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, Observable, take, throwError } from 'rxjs';
-import { Commande } from '../produits/interfaces/produit.model';
+import { Commande, Produits } from '../produits/interfaces/produit.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,7 @@ export class CommandeService {
   qteCheck: number=0;
 
   private DATA_COMMANDES = 'http://127.0.0.1:8000/api/commandes';
+  private DATAS = 'http://127.0.0.1:8000/api/produits';
 
   constructor(private http: HttpClient) {
     let qteExist = JSON.parse(localStorage.getItem('qteChoisi') || '[]');
@@ -39,10 +40,20 @@ export class CommandeService {
 } 
 
 changeEtat(body: any, id: number):Observable<any>{
-  return this.http.patch<any>('http://127.0.0.1:8000/api/commandes/'+id, body)
+  return this.http.put<any>('http://127.0.0.1:8000/api/commandes/'+id, body)
 }
 
-
+findAll():Observable<any[]>{
+  return this.http.get<any[]>(this.DATA_COMMANDES);
+}
+getOne(id: number):Observable<any>{
+  return this.http.get<any>('http://127.0.0.1:8000/api/commandes/'+id);
+}
+findOneBy(id: number, discrim: Produits[]){
+  return discrim.find(
+        (p:Produits)=>{ return p.id === id; }
+      );
+}
 
 
 

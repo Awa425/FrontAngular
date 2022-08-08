@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CartService } from 'src/app/service/cart.service';
 import { CatalogueService } from 'src/app/service/catalogue.service';
 
 @Component({
@@ -10,26 +11,55 @@ export class ComplementComponent implements OnInit {
   fritte!: any[]
   taille!: any[]
   boisson!: any[]
-  constructor(private produits: CatalogueService) { }
+  taille1!: any
+  taille2!: any
+  taille3!: any
+  prix!: number
+  constructor(private produits: CatalogueService, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.produits.getFrittes().subscribe(
-      fritte =>{ 
+      fritte =>{  
         this.fritte=fritte;       
       }
     )
     this.produits.getBoissons().subscribe(
       taille =>{  
+      
         this.taille=taille
+        // console.log(typeof(taille[0].prix));
+        
         for (let i = 0; i < taille.length; i++) {
           this.produits.getTailleBoisson(taille[i].id).subscribe(boisson=>{
-            console.log(boisson[i].boisson.nom);
+            // console.log(taille[i]);
             
            this.boisson=boisson
           })
         }
       }
     )
+
+    this.produits.getTailleBoisson(1).subscribe(
+      boisson1=>{
+        this.taille1=boisson1
+        // console.log(boisson1);
+      }
+    )
+    this.produits.getTailleBoisson(2).subscribe(
+      boisson2=>{
+        this.taille2=boisson2
+        // console.log(boisson2);
+      }
+    )
+    this.produits.getTailleBoisson(3).subscribe(
+      boisson3=>{
+        this.taille3=boisson3
+        // console.log(boisson3);
+      }
+    )
+  }
+  addPanier(produit:any) {
+    this.cartService.addProdToCart(produit);
   }
 
 }

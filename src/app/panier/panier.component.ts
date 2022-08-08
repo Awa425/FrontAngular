@@ -66,7 +66,7 @@ export class PanierComponent implements OnInit {
     if (e!=0) {
       this.zo=e
     } 
-    console.log(this.zo);
+    // console.log(this.zo);
     return this.zo;
   }
 
@@ -83,46 +83,46 @@ export class PanierComponent implements OnInit {
   aLivrer(){
     this.zo=0;
     this.surPlac=false;
-    console.log(this.zo);
-    
   }
   
   commander(){
     this.dataCart.getItems().subscribe(data => {
-      console.log(this.zo);
+      // console.log(data);
       
       for (let index = 0; index < data.length; index++) { 
         if (this.zo==0) {
           this.body = {
-            "ligneCommandes": [
+            "client": {
+              "id": 21
+            },
+            "ligneCommande": [
               {
                 "quanite": data[index].quantite,
                 "produit": {
                   "id": data[index].id
                 }
               }
-            ],
-            "client": {
-              "id": 21
-            }
+            ]
           }
         }
         else{
           this.body = {
-            "zone": "api/zones/"+this.zo,
-            "ligneCommandes": [
+            "zone":{
+              "id": this.zo
+            },      
+            "client": {
+              "id": 21
+            },
+            "ligneCommande": [
               {
                 "quanite": data[index].quantite,
                 "produit": {
                   "id": data[index].id
                 }
               }
-            ],
-            "client": {
-              "id": 21
-            }
+            ]
           }
-        }
+        }        
         this.http.post<any>('http://127.0.0.1:8000/api/commandes', this.body).subscribe();
         // this.dataCart.clearCart(data);
       }

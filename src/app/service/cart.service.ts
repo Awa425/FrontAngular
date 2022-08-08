@@ -28,7 +28,8 @@ export class CartService {
     this. card$.pipe(
       take(1),
       map((produits) => { 
-       
+        //  console.log(produits);
+         
         if(!this.findOneBy(produit.id ,produits)){
           produit.quantite = 1;
           // this.prix = this.prix + produit.prix;
@@ -50,6 +51,7 @@ export class CartService {
   clearCart(items: any) {
     items = [];
     localStorage.removeItem("products")
+    this.reloadCurrentPage();
   }
 
   findOneBy(id: number, produit: Produits[]){
@@ -64,9 +66,14 @@ export class CartService {
       map((produits) => {
         produits.splice((produits.indexOf(produit)), 1);  
         localStorage.setItem('products', JSON.stringify(produits));
+        this.reloadCurrentPage();
       }),
       ).subscribe();
   }
+
+  reloadCurrentPage() {
+    window.location.reload();
+   }
 
 // saveEtat(){
 //   return localStorage.setItem('products', JSON.stringify(this.transitionTab()[])

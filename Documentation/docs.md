@@ -43,3 +43,7 @@
 ` 2. Dire ou est ce qu'on charge ces composant: Dans AppComponent.html, on met :`
 * <router-outlet></router-outlet>
 # NB: ` Ne faut pas utiliser les href (chargement page) mais plutot routerLink(empeche le chargement)`
+
+# Filter: 
+` 1) cree une pipe ng g p "nomPipe"`  
+` 2) `

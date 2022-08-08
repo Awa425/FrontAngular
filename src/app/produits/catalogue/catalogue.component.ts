@@ -12,14 +12,16 @@ export class CatalogueComponent implements OnInit {
    menu!: any;
    burger!: any;
    type!:number;
-   produits!: Produits[]
+   produits!: any
+   searchText: string='';
+
   constructor(private pro: CatalogueService) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
     this.pro.getProduis().subscribe(
-      catalogue => {  
-        this.burger=catalogue[0];
-        this.menu=catalogue[1];   
+      catalogue => { 
+        // console.log(this.searchText);
+        this.produits=catalogue; 
      }
     ) 
   }

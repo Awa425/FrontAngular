@@ -2,16 +2,12 @@
   <div class="container">
     <div class="section-header">
       <h2 class="text-dark">Nos Produits</h2>
-    </div>
-    <h5>Nos Burgers</h5>
-    <div class="d-flex flex-wrap">
-      <app-card  class="col-4 menu-item carde" *ngFor=" let b of burger" [prod]="b"></app-card>
+    </div> 
+    <input type="text" placeholder="Search" [(ngModel)]="searchText">
+    <div class="d-flex flex-wrap" *ngFor="let pro of produits">
+      <app-card  class="col-4 menu-item carde" *ngFor=" let b of pro | filtre:searchText : 'nom' " [prod]="b"></app-card>
     </div>
     <hr>
-    <h5>Nos Menus</h5>
-    <div class="d-flex flex-wrap">
-      <app-card class="col-4 menu-item carde" *ngFor=" let m of menu" [prod]="m"></app-card>
-    </div>
-
   </div>
+<!-- </div> -->
 </section><!-- End Menu Section -->

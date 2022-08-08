@@ -1,26 +1,27 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { CatalogueService } from '../service/catalogue.service';
 
 @Pipe({
   name: 'filtre'
 })
 export class FiltrePipe implements PipeTransform {
 
+
   //value => Le tab qu'on doit faire le filtre
-  //search => Ce qu' il search
-  //propriete => sur quelle propriete il veut faire le filtre (nom, titre, etat...)
+  //search => Ce qu' il faut search
+  //propriete => sur quelle propriete on doit faire le filtre (nom, titre, etat...)
   
-  transform(value: any, search: any, propriete: any): unknown {
-    let tabResult = [];
-
-    if(value.lenght === 0 || search.lenght===0){
-      return value;
-    }
-    for(let val of value){
-      if(val[propriete]===search){
-        tabResult.push(val);
+  transform(value: any, searchText: string, attribu: any): any[] {
+      if (value.length ===0 || searchText.length === 0) {
+         return value;
       }
-    }
-    return tabResult;
-  }
 
+      const tab = [];
+      for(const val of value){ 
+        if (val[attribu].toLowerCase().startsWith(searchText)){
+          tab.push(val);
+        }
+      }
+    return tab;
+  }
 }

@@ -16,6 +16,7 @@ export class CatalogueService {
   private DATA_BOISSONS = 'http://127.0.0.1:8000/api/tailles';
   // private DATA_TBoisson = 'http://127.0.0.1:8000/api/tailles/{id}/taille_boissons';
   private ALL_DATA = 'http://127.0.0.1:8000/api/produits'
+  private DATA_BOISSON = 'http://127.0.0.1:8000/api/boissons'
 
   constructor(private MyHttp: HttpClient) { }
 
@@ -40,7 +41,12 @@ getTailleBoisson(id: number):Observable<any>{
 getAll(x:string):Observable<any>{
   return this.MyHttp.get<any>(this.ALL_DATA+x)
 }
-
+getProduits():Observable<any>{
+  return this.MyHttp.get<any>(this.ALL_DATA)
+}
+getAllBoissons():Observable<any>{
+  return this.MyHttp.get<any>(this.DATA_BOISSON)
+}
 
 
 findOneBy(id: number, discrim: Produits[]){
@@ -55,7 +61,9 @@ getOneBy(id: number, discrim: Produits[]){
       );
 }
 
-
+reloadCurrentPage() {
+  window.location.reload();
+ }
 
 // findAll():Observable<Produits[]>{
 //   return this.MyHttp.get<Produits[]>(this.DATAS);

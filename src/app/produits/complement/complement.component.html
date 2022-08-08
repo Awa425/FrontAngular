@@ -1,4 +1,96 @@
-<section class="h-100 h-custom" style="background-color: #d2c9ff;">
+<h1 class="fw-bold mb-0 text-black">Nos Complements</h1> <br>
+
+<!-- ***************** Nos frittes *********************** -->
+    <h2 class="fw-bold mb-0 text-black">Nos Frittes</h2> <br>
+<div  class="d-flex">
+    <div class="card w-50 d-flex flex-column align-items-center row mb-4" *ngFor="let f of fritte.slice(0,4)" style="background-color: #e4e3e3; margin: 3em;">
+        <div >
+        <img [routerLink]="['/produits',+f.id]"
+        img class="card-img-top" [src]="'data:image/jpg;base64,' + f.image" alt="Card image cap"
+            class="img-fluid rounded-3">
+        </div>
+        <div class="c">
+            <h6 class="text-muted">Nom</h6>
+            <h6 class="text-black ">{{f.nom}}</h6>
+        </div>
+        <p class="price" style="color: rgba(206, 18, 18, 0.8); font-weight:bold" [innerText]="f.prix+' FCFA'"></p>
+        <button class="btn btn-outline-warning" (click)="addPanier(f)">Ajouter au Panier</button>
+    </div> 
+</div>
+
+    <!-- ***************** Nos Boissons *********************** -->
+    <h2 class="fw-bold mb-0 text-black">Les PM</h2> <br>
+    <div  class="d-flex">
+        <div class="card w-50 d-flex flex-column align-items-center mb-4" *ngFor="let b of taille1"  
+            style="background-color: #e4e3e3; margin: 3em">
+            <div>
+                <img img class="card-img-top" [src]="'data:image/jpg;base64,' + b.boisson.image" alt="Card image cap"
+                class="img-fluid rounded-3" style=" width: 34em;">
+            </div>
+            <div class="c">
+                <h6 class="text-muted">Nom</h6>
+                <h6 class="text-black ">{{b.boisson.nom}}</h6>
+            </div>
+            <p class="price" style="color: rgba(206, 18, 18, 0.8); font-weight:bold"  [innerText]="taille[1].prix+'FCFA'"></p>
+            <button class="btn btn-outline-warning" (click)="addPanier(b.boisson)">Ajouter au Panier</button>
+        </div> 
+    </div>
+
+
+    <h2 class="fw-bold mb-0 text-black">Les GM</h2> <br>
+    <div  class="d-flex">
+        <div class="card  d-flex flex-column align-items-center" *ngFor="let b of taille2" class="row mb-4 d-flex  align-items-center " 
+        style="background-color: #e4e3e3; margin: 3em">
+            <div>
+                <img img class="card-img-top" [src]="'data:image/jpg;base64,' + b.boisson.image" alt="Card image cap"
+                class="img-fluid rounded-3" style=" width: 34em;">
+            </div>
+            <div class="c">
+                <h6 class="text-muted">Nom</h6>
+                <h6 class="text-black ">{{b.boisson.nom}}</h6>
+            </div>
+            <p class="price" style="color: rgba(206, 18, 18, 0.8); font-weight:bold" [innerText]="taille[2].prix+'FCFA'"></p>
+            <button class="btn btn-outline-warning" (click)="addPanier(b.boisson)">Ajouter au Panier</button>
+        </div> 
+    </div>
+
+    <!-- <h2 class="fw-bold mb-0 text-black">Les GM</h2> <br>
+    <div  class="d-flex">
+        <div class="card w-50 d-flex flex-column align-items-center" *ngFor="let b of taille3" class="row mb-4 d-flex  align-items-center " style="background-color: #e4e3e3;">
+            <div>
+                <img img class="card-img-top" [src]="'data:image/jpg;base64,' + b.boisson.image" alt="Card image cap"
+                class="img-fluid rounded-3">
+            </div>
+            <div class="c">
+                <h6 class="text-muted">Nom</h6>
+                <h6 class="text-black ">{{b.boisson.nom}}</h6>
+            </div>
+            <p class="price" style="color: rgba(206, 18, 18, 0.8); font-weight:bold" [innerText]="taille[3].prix+'FCFA'"></p>
+            <button class="btn btn-outline-warning" (click)="addPanier(b.boisson)">Ajouter au Panier</button>
+        </div> 
+    </div> -->
+
+
+
+
+
+            <!-- <div class="card w-50 d-flex  align-items-center" *ngFor="let b of boisson" style="background-color: #e4e3e3;">
+                <div class="w-50">
+                    <img  class="card-img-top " [src]="'data:image/jpg;base64,' + b.boisson.image" alt="Card image cap"
+                    class="img-fluid rounded-3">
+                </div>
+                <div class="c">
+                    <h6 class="text-muted">Nom</h6>
+                    <h6 class="text-black ">{{b.boisson.nom}}</h6>
+                </div>
+                <p class="price" style="color: rgba(206, 18, 18, 0.8); font-weight:bold" [innerText]="t.prix+' FCFA'" ></p>
+                <button class="btn btn-outline-warning" (click)="addPanier(t)">Ajouter au Panier</button> 
+            </div>  -->
+     
+
+
+
+<!-- <section class="h-100 h-custom" style="background-color: #e4e3e3;">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12">
@@ -9,9 +101,9 @@
                   <div class="p-5">
                     <div class="d-flex justify-content-between align-items-center mb-5">
                       <h1 class="fw-bold mb-0 text-black text-center">Nos complements</h1>
-                    </div>
+                    </div> -->
                     <!-- ***************** Nos frittes *********************** -->
-                    <h2 class="fw-bold mb-0 text-black">Nos Frittes</h2> <br>
+                    <!-- <h2 class="fw-bold mb-0 text-black">Nos Frittes</h2> <br>
                     <div *ngFor="let f of fritte" class="row mb-4 d-flex justify-content-between align-items-center">
                       <div class="col-md-2 col-lg-2 col-xl-2">
                         <img
@@ -42,9 +134,9 @@
                       <div class="col-md-1 col-lg-1 col-xl-1 text-end">
                         <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
                       </div>
-                    </div> <br><br>
+                    </div> <br><br> -->
                     <!-- ***************** Nos Boissons *********************** -->
-                    <h2 class="fw-bold mb-0 text-black">Nos Boissons</h2> <br>
+                    <!-- <h2 class="fw-bold mb-0 text-black">Nos Boissons</h2> <br>
                     <div *ngFor="let t of taille">
                         <h4 class="fw-bold mb-0 text-black">{{t.nom}}</h4>
                         <div *ngFor="let b of boisson" class="row mb-4 d-flex justify-content-between align-items-center">
@@ -90,4 +182,4 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
