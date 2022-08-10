@@ -59,8 +59,6 @@ export interface Zone{
     prixLivraison: number;
 }
 
-
-
 export interface Commande{
     zone: Zone;
     ligneCommandes:[
