@@ -14,6 +14,7 @@ import { ListProduitsComponent } from './admin/produits/list-produits/list-produ
 import { AdminComponent } from './admin/admin.component';
 import { FormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ListeLivraisonsComponent } from './admin/livraisons/liste-livraisons/liste-livraisons.component';
 // import { DetailAdminCommComponent } from './admin/commandes/detail-admin-comm/detail-admin-comm.component';
 
 
@@ -29,6 +30,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     AddComponent,
     ListProduitsComponent,
     AdminComponent,
+    ListeLivraisonsComponent,
     // DetailAdminCommComponent,
     
   ],

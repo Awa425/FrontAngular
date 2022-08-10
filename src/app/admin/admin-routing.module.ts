@@ -8,6 +8,7 @@ import { ListeCommandesComponent } from './admin/commandes/liste-commandes/liste
 import { ZoneCommandesComponent } from './admin/commandes/zone-commandes/zone-commandes.component';
 import { DetailLivraisonComponent } from './admin/livraisons/detail-livraison/detail-livraison.component';
 import { DetailLivreurComponent } from './admin/livraisons/detail-livreur/detail-livreur.component';
+import { ListeLivraisonsComponent } from './admin/livraisons/liste-livraisons/liste-livraisons.component';
 import { LivraisonsComponent } from './admin/livraisons/livraisons.component';
 import { ProduitsComponent } from './admin/produits/produits.component';
 
@@ -32,7 +33,7 @@ const routes: Routes = [
         children: [
             {path: ':id', component: DetailLivraisonComponent},
             {path: 'livreur/:id', component: DetailLivreurComponent},
-            {path: '', component: LivraisonsComponent}
+            {path: '', component: ListeLivraisonsComponent}
         ]
       },
 

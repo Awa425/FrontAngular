@@ -54,6 +54,23 @@ import { DetailAdminCommComponent } from './admin/admin/commandes/detail-admin-c
     Ng2SearchPipeModule,
     AdminModule
   ],
+  exports:[
+    AppComponent,
+    ProduitsComponent,
+    HeaderComponent,
+    FooterComponent,
+    CarouselComponent,
+    CatalogueComponent,
+    CardComponent,
+    AddComponent,
+    DetailComponent,
+    PanierComponent,
+    CommandeComponent,
+    ComplementComponent,
+    DetailCommandeComponent,
+    ListeCommParDateComponent,
+    DetailAdminCommComponent
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,42 @@
+
+<div class="search-hero" style="width: 15%">
+    <input class="form-control" type="date" name="search" autocomplete="off" placeholder="&#61442;  Search">
+</div>
+<div class="row">
+        <table class="table container">
+            <thead>
+            <tr>
+                <th scope="col">Zones</th>
+                <th scope="col">Commandes</th>
+                <th scope="col" colspan="2" class="text-center">Options</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let zone of data">     
+                    <td>{{zone.nom_zone}}</td>
+                    <td >
+                        <ul *ngFor="let comm of zone.commande">
+                            <li *ngIf="comm.etat=='valider'"> 
+                                    <span><strong>Telephone: </strong> </span>
+                                    {{comm.client.telephone}}  {{comm.etat}}
+                                    <ul>
+                                        <li *ngFor="let ligne of comm.ligneCommande">
+                                        <span> <strong>Produits:</strong>  {{ligne.produit.nom}}</span> 
+                                        </li>
+                                    </ul> 
+                                <br>
+                            </li> 
+                        </ul>
+                    </td>
+                    <td class="text-center">
+                        <a class="btn btn-outline-warning " >Detail</a>
+                        <a class="btn btn-outline-danger" >Annuler</a>   
+                    </td>
+                   
+                </tr>
+            </tbody>
+        </table>
+</div>    
+
+
+
