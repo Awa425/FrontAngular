@@ -17,12 +17,9 @@ export class CommandeComponent implements OnInit {
 
   constructor(private commandeService: CommandeService, private paramRoute: ActivatedRoute) { }
 
-  ngOnInit(): void {
-    // this.par = +this.paramRoute.snapshot.params; console.log(this.par);
-    
+  ngOnInit(): void {    
     this.commandeService.getCommandeClient(21).subscribe(client => { 
       this.commandeClient=client
-      // console.log(this.commandeClient)
     }
       
     )

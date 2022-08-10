@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 import { CommandeService } from 'src/app/service/commande.service';
 
 @Component({
@@ -9,16 +10,46 @@ import { CommandeService } from 'src/app/service/commande.service';
 export class ListeCommParDateComponent implements OnInit {
   commandes: any
   searchText: string=''
+  data!:any
+  ligneComm!: any
+  body!: any;
+  
 
-  constructor(private commandeService: CommandeService) { }
+  constructor(private commandeService: CommandeService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.commandeService.getCommande().subscribe(
       commandes => {
+            // console.log(commandes);
         this.commandes=commandes
-        console.log(commandes);
       }
     )
+    this.searchText = this.myFormateDate();
+    
+    // console.log(this.searchText);
+    
+
+    this.body={
+      "etat": "Anuler"
+    }    
+  }
+
+  changeEta(id: number){ 
+    this.commandeService.changeEtat(this.body, id).subscribe();  
+    this.reloadCurrentPage(); 
+  }
+
+  reloadCurrentPage() {
+    window.location.reload();
+   }
+
+   
+   myFormateDate(){
+    let date=new Date();    
+    let day =date.toLocaleDateString().slice(0,2);
+    let month = date.toLocaleDateString().slice(3,5); 
+    let year= date.toLocaleDateString().slice(6);    
+    return year+"-"+month+"-"+day ;
   }
 
 }

@@ -46,7 +46,9 @@ export class DetailComponent implements OnInit {
         else if(this.produits.findOneBy(this.param, this.menu)){ 
           this.prod=this.produits.findOneBy(this.param, this.menu);
           
+          
           for (let index = 0; index < this.prod.menuTailles.length; index++) {
+            // console.log(this.prod.menuTailles[0].taille.tailleBoissons);
             const element = this.prod.menuTailles[index];
             this.quantite=element.quantite;
           }

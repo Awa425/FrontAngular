@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, Observable, take, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, Observable, take, tap, throwError } from 'rxjs';
 import { Commande, Produits } from '../produits/interfaces/produit.model';
 
 @Injectable({
@@ -31,6 +31,16 @@ export class CommandeService {
     return this.http.get<any>(this.DATA_COMMANDES)
   }
 
+  // getProduis():Observable<any>{
+  //   return this.MyHttp.get<any>(this.DATA_API)
+  //   // .pipe(
+  //   //   tap(produits=>console.log("Produits:", produits)),
+  //   //   catchError(this.handleError)
+  //   // );
+  // }
+
+
+
   getCommandeClient(id: number):Observable<any>{
     return this.http.get<any>('http://127.0.0.1:8000/api/clients/'+id+'/commandes')
   }
@@ -54,8 +64,6 @@ findOneBy(id: number, discrim: Produits[]){
         (p:Produits)=>{ return p.id === id; }
       );
 }
-
-
 
 
 

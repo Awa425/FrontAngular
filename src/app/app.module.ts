@@ -22,6 +22,7 @@ import { DetailCommandeComponent } from './commande/detail-commande/detail-comma
 import { ListeCommParDateComponent } from './commande/liste-comm-par-date/liste-comm-par-date.component';
 // search module
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { AdminModule } from './admin/admin.module';
 
 
 @NgModule({
@@ -40,7 +41,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     ComplementComponent,
     DetailCommandeComponent,
     ListeCommParDateComponent,
- 
   ],
   imports: [   
     BrowserModule,
@@ -49,8 +49,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
     HttpClientModule,
     StoreModule.forRoot({}, {}),
     AppRoutingModule,
-    Ng2SearchPipeModule
-
+    Ng2SearchPipeModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]

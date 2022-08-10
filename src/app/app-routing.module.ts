@@ -10,15 +10,27 @@ import { DetailCommandeComponent } from './commande/detail-commande/detail-comma
 import { ListeCommParDateComponent } from './commande/liste-comm-par-date/liste-comm-par-date.component';
 
 const routes: Routes=[
+
+ 
   {path: '', redirectTo: '/produits', pathMatch: 'full'},
   {path: 'produits', component: CatalogueComponent},
   {path: 'panier', component: PanierComponent},
   {path: 'produits/add', component: AddComponent},
   {path: 'produits/:id', component: DetailComponent},
-// ******************* ChildRoot***********************
-{path: 'commandes/liste', component: ListeCommParDateComponent},
   {
-    path: 'commandes', 
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+  },
+  {path: 'commandes', 
+  component: ListeCommParDateComponent,
+  children:[
+    {path: ':id' ,component: DetailCommandeComponent}
+  ]
+},
+
+// ******************* ChildRoot Pour Commandes d'un client ***********************
+  {
+    path: 'client/commandes', 
     component: CommandeComponent,
     children:[
       {path: ':id', component: DetailCommandeComponent},
@@ -30,10 +42,7 @@ const routes: Routes=[
 
 @NgModule({
 
-  imports: [
-   
-    RouterModule.forRoot(routes)
-  ],
+  imports: [RouterModule.forRoot(routes)],
   exports:[RouterModule]
 })
 export class AppRoutingModule { }

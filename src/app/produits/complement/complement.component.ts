@@ -39,7 +39,7 @@ export class ComplementComponent implements OnInit {
     this.produits.getTailleBoisson(1).subscribe(
       boisson1=>{
         this.taille1=boisson1
-        console.log(this.taille1);
+        // console.log(this.taille1);
       }
     )
     this.produits.getTailleBoisson(2).subscribe(

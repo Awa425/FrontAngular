@@ -1,27 +1,34 @@
-<div class="search-hero" style="width: 15%">
-    <input class="form-control" type="date" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Search">
-</div>
-<div class="row">
-    <div>
-        <table class="table container">
-            <thead>
-            <tr>
-                <th scope="col">Date</th>
-                <th scope="col">Etat</th>
-                <th scope="col" colspan="2" class="text-center">Options</th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let c of commandes | filter: searchText">     
-                    <td>{{c.date}}</td>
-                    <td>{{c.etat}}</td>
-                    <td><a  class="btn btn-outline-warning" >Detail</a></td>
-                    <td><a class="btn btn-outline-danger" >Annuler</a></td>
-                </tr>
-            </tbody>
-        </table>
+    <h3 class="text-center" *ngIf="searchText==myFormateDate()">Les commandes d'aujourd'hui</h3>
+    <h3 class="text-center" *ngIf="searchText!=myFormateDate()">Les commandes du {{searchText}}</h3>
+
+    <div class="search-hero" style="width: 15%">
+        <input class="form-control" type="date" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Search">
     </div>
-    
-</div>
+    <div class="row">
+        <div  class="col-sm-7">
+            <table class="table container">
+                <thead>
+                <tr>
+                    <th scope="col">Date</th>
+                    <th scope="col">Etat</th>
+                    <th scope="col" colspan="2" class="text-center">Options</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let c of commandes | filter: searchText">     
+                        <td>{{c.date | date: 'HH:mm:ss'}}</td>
+                        <td>{{c.etat}}</td>
+                        <td><a [routerLink]="['/commandes',c.id]"  class="btn btn-outline-warning" >Detail</a></td>
+                        <td><a class="btn btn-outline-danger" (click)="changeEta(c.id)">Annuler</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <h4 class="text-center">Detail du Commande</h4>
+            <router-outlet></router-outlet>
+        </div> 
+    </div>    
+
 
   
