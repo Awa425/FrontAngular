@@ -24,9 +24,9 @@ export class ListeCommandesComponent implements OnInit {
       "etat": "Anuler"
     } 
   }
-
+// 22/10/2022
   myFormateDate(){
-    let date=new Date();    
+    let date=new Date();   
     let day =date.toLocaleDateString().slice(0,2);
     let month = date.toLocaleDateString().slice(3,5); 
     let year= date.toLocaleDateString().slice(6);    
