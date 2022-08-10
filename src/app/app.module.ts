@@ -20,9 +20,10 @@ import { CommandeComponent } from './commande/commande.component';
 import { ComplementComponent } from './produits/complement/complement.component';
 import { DetailCommandeComponent } from './commande/detail-commande/detail-commande.component';
 import { ListeCommParDateComponent } from './commande/liste-comm-par-date/liste-comm-par-date.component';
+import { AdminModule } from './admin/admin.module';
 // search module
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { AdminModule } from './admin/admin.module';
+import { DetailAdminCommComponent } from './admin/admin/commandes/detail-admin-comm/detail-admin-comm.component';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { AdminModule } from './admin/admin.module';
     ComplementComponent,
     DetailCommandeComponent,
     ListeCommParDateComponent,
+    DetailAdminCommComponent
   ],
   imports: [   
     BrowserModule,

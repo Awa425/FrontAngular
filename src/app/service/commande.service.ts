@@ -64,6 +64,13 @@ findOneBy(id: number, discrim: Produits[]){
         (p:Produits)=>{ return p.id === id; }
       );
 }
+myFormateDate(){
+  let date=new Date();    
+  let day =date.toLocaleDateString().slice(0,2);
+  let month = date.toLocaleDateString().slice(3,5); 
+  let year= date.toLocaleDateString().slice(6);    
+  return year+"-"+month+"-"+day ;
+}
 
 
 

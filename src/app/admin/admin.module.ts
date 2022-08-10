@@ -2,17 +2,17 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
-import { CommandesComponent } from './commandes/commandes.component';
-import { LivraisonsComponent } from './livraisons/livraisons.component';
-import { ProduitsComponent } from './produits/produits.component';
-import { ListeCommandesComponent } from './commandes/liste-commandes/liste-commandes.component';
-import { ZoneCommandesComponent } from './commandes/zone-commandes/zone-commandes.component';
-import { DetailLivraisonComponent } from './livraisons/detail-livraison/detail-livraison.component';
-import { DetailLivreurComponent } from './livraisons/detail-livreur/detail-livreur.component';
-import { AddComponent } from './produits/add/add.component';
-import { ListProduitsComponent } from './produits/list-produits/list-produits.component';
+import { CommandesComponent } from './admin/commandes/commandes.component';
+import { LivraisonsComponent } from './admin/livraisons/livraisons.component';
+import { ProduitsComponent } from './admin/produits/produits.component';
+import { ListeCommandesComponent } from './admin/commandes/liste-commandes/liste-commandes.component';
+import { ZoneCommandesComponent } from './admin/commandes/zone-commandes/zone-commandes.component';
+import { DetailLivraisonComponent } from './admin/livraisons/detail-livraison/detail-livraison.component';
+import { DetailLivreurComponent } from './admin/livraisons/detail-livreur/detail-livreur.component';
+import { AddComponent } from './admin/produits/add/add.component';
+import { ListProduitsComponent } from './admin/produits/list-produits/list-produits.component';
 import { AdminComponent } from './admin/admin.component';
-import { DetailAdminCommComponent } from './commandes/detail-admin-comm/detail-admin-comm.component';
+// import { DetailAdminCommComponent } from './admin/commandes/detail-admin-comm/detail-admin-comm.component';
 
 
 @NgModule({
@@ -27,7 +27,7 @@ import { DetailAdminCommComponent } from './commandes/detail-admin-comm/detail-a
     AddComponent,
     ListProduitsComponent,
     AdminComponent,
-    DetailAdminCommComponent,
+    // DetailAdminCommComponent,
     
   ],
   imports: [

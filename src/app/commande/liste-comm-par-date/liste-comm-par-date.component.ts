@@ -14,20 +14,17 @@ export class ListeCommParDateComponent implements OnInit {
   ligneComm!: any
   body!: any;
   
+  
 
   constructor(private commandeService: CommandeService, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.commandeService.getCommande().subscribe(
       commandes => {
-            // console.log(commandes);
         this.commandes=commandes
       }
     )
-    this.searchText = this.myFormateDate();
-    
-    // console.log(this.searchText);
-    
+    this.searchText = this.myFormateDate();    
 
     this.body={
       "etat": "Anuler"
