@@ -20,7 +20,7 @@ export class CatalogueComponent implements OnInit {
   ngOnInit(): void {    
     this.pro.getProduis().subscribe(
       catalogue => { 
-        // console.log(this.searchText);
+        // console.log(catalogue);
         this.produits=catalogue; 
      }
     ) 

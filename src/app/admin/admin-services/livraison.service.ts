@@ -12,10 +12,14 @@ export class LivraisonService {
   getLivraisons():Observable<any>{
     return this.http.get<any>('http://127.0.0.1:8000/api/livraisons');
   }
+  getOneLivraisons(id: number):Observable<any>{
+    return this.http.get<any>('http://127.0.0.1:8000/api/livraisons/'+id);
+  }
   getZones():Observable<any>{
     return this.http.get<any>('http://127.0.0.1:8000/api/zones');
   }
   getLivreurs():Observable<any>{
     return this.http.get<any>('http://127.0.0.1:8000/api/livreurs');
   }
+  
 }

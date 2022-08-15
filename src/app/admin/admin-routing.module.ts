@@ -10,6 +10,7 @@ import { DetailLivraisonComponent } from './admin/livraisons/detail-livraison/de
 import { DetailLivreurComponent } from './admin/livraisons/detail-livreur/detail-livreur.component';
 import { ListeLivraisonsComponent } from './admin/livraisons/liste-livraisons/liste-livraisons.component';
 import { LivraisonsComponent } from './admin/livraisons/livraisons.component';
+import { ListProduitsComponent } from './admin/produits/list-produits/list-produits.component';
 import { ProduitsComponent } from './admin/produits/produits.component';
 
 const routes: Routes = [
@@ -39,7 +40,7 @@ const routes: Routes = [
 
       {
         path: 'produits',
-        component: ProduitsComponent,
+        component: ListProduitsComponent,
         children: [
           {path: 'new', component:AddComponent},
           {path: '', redirectTo: '/admin/produits', pathMatch: 'full'}

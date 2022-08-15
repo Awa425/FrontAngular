@@ -52,6 +52,9 @@ export class CommandeService {
 changeEtat(body: any, id: number):Observable<any>{
   return this.http.put<any>('http://127.0.0.1:8000/api/commandes/'+id, body)
 }
+changeEtatLivreur(body: any, id: number):Observable<any>{
+  return this.http.put<any>('http://127.0.0.1:8000/api/livreurs/'+id, body)
+}
 
 findAll():Observable<any[]>{
   return this.http.get<any[]>(this.DATA_COMMANDES);

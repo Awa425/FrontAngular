@@ -6,7 +6,7 @@
         <p class="ingredients">
           Lorem, deren
         </p>
-        <p class="price" style="color: rgba(206, 18, 18, 0.8); font-weight:bold" [innerText]="prod.prix"></p>
+        <p class="price" style="color: rgba(206, 18, 18, 0.8); font-weight:bold" [innerText]="prod.prix+' FCFA' "></p>
         <div class="d-flex" style="justify-content: space-between; font-weight: bold">
             <span class="btn btn-outline-warning" [routerLink]="['/produits', prod.id]" >Voir Detail</span>
            

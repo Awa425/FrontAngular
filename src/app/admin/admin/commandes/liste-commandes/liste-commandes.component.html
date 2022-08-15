@@ -18,8 +18,10 @@
                 <tr *ngFor="let c of commandes | filter: searchText">     
                     <td>{{c.date | date: 'HH:mm:ss'}}</td>
                     <td>{{c.etat}}</td>
-                    <td><a [routerLink]="['/admin/commandes',c.id]"  class="btn btn-outline-warning" >Detail</a></td>
-                    <td><a class="btn btn-outline-danger" (click)="changeEta(c.id)">Annuler</a></td>
+                    <td class="text-center">
+                        <a [routerLink]="['/admin/commandes',c.id]"  class="btn btn-outline-warning" >Detail</a>
+                        <a class="btn btn-outline-danger" (click)="changeEta(c.id)">Annuler</a>
+                    </td>
                 </tr>
             </tbody>
         </table>

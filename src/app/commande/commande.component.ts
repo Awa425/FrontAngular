@@ -42,7 +42,13 @@ export class CommandeComponent implements OnInit {
   // *************** FUNCTIONS ******************
 
   changeEta(id: number){ 
-    this.commandeService.changeEtat(this.body, id).subscribe();   
+    this.commandeService.changeEtat(this.body, id).subscribe(
+      etat => {
+        if (etat) {
+          window.location.reload();
+        }
+      }
+    );   
   }
   detail(id: number){
     // console.log(id);

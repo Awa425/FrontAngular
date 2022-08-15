@@ -1,10 +1,10 @@
 
 <br>
-<div class="search-hero" style="width: 15%">
+<!-- <div class="search-hero" style="width: 15%">
     <input class="form-control" type="date" name="search" autocomplete="off" placeholder="&#61442;  Search">
-</div> <br>
+</div> <br><br> -->
  <!-- ********************** Selectionner un livreur *****************-->
- <button type="button" class="btn btn-outline-warming" data-bs-toggle="modal" data-bs-target="#exampleModal">Selecionner un livreur</button>
+ <strong><h3 class="text-center">Faire une livraisons</h3></strong> <br><br> 
 
  <div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -44,52 +44,70 @@
     </div>
   </div>
 
-  <select class="select">
-    <option *ngFor="let zone of data" value={{zone.id}} (click)="zoneChoice(zone.id)">{{zone.nom_zone}}</option>
-  </select>
+  <div class="d-flex">
+    <button type="button" class="btn btn-outline-danger btn-block btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">Selecionner un livreur</button>
+    <select class="select btn btn-outline-danger btn-block btn-lg" style="margin-left: 5%;">
+        <option selected style="color: rgb(216, 213, 213);">Choisi une zone !!!</option>
+        <option *ngFor="let zone of data" value={{zone.id}} (click)="zoneChoice(zone.id)">{{zone.nom_zone}}</option>
+      </select>  
+  </div> <br><br> <br><br>
 
-
-<div class="row">
-        <table class="table table-sm">
-            <thead>
-            <tr class="text-center">
-                <th scope="col">Zones</th>
-                <th scope="col">Commandes Valide</th>
-                <th scope="col" colspan="2" class="text-center">Options</th>
-            </tr>
-            </thead>
-            <tbody>
-                <tr class="text-center" *ngFor="let zone of data">     
-                    <td class="text-center">{{zone.nom_zone}}</td>
-                    <td class="text-center">
-                        <ul *ngFor="let comm of zone.commande">
-                            <li *ngIf="comm.etat=='valider' && myZone==zone.id"> 
-                                    <span><strong>Telephone: </strong> </span>
-                                    {{comm.client.telephone}}
-                                    <input class="form-check-input " type="checkbox" id="checkboxNoLabel"  (change)="getIdCheck($event, comm.id)" aria-label="..."  style="margin-left: 5%;"/> 
-                                    <ul>
-                                        <li *ngFor="let ligne of comm.ligneCommande">
-                                        <span> <strong>Produits:</strong>{{ligne.produit.nom}}</span> 
-                                        </li>
-                                    </ul> 
-                                <br>
-                            </li> 
-                        </ul>
-                    </td>
-                    <td class="text-center">
-                        <!-- <a class="btn btn-outline-warning " >Detail</a>
-                        <a class="btn btn-outline-danger" >Annuler</a>    -->
-                    </td>
-                   
-                </tr>
-            </tbody>
-        </table>
-        <div class="card">
-            <div class="card-body">
-              <button type="button"  class="btn btn-warning btn-block btn-lg" style="float: right;"  (click)="livrer()">Faire la livraison</button>
-            </div>
+ <div class="col-md-12 d-flex justify-content-center align-items-center">
+    <div class="col-md-6 col">
+        <div class="text-center bg-danger text-light " >Livraisons</div>
+        <div class="d-flex justify-content-between" style="border: 1px solid grey;">
+            <img src="../../assets/img/thiakthiak.png" class="img-fluid " alt="" style="width: 25%;">
+            <div *ngFor="let zone of data">
+                <ul *ngFor="let comm of zone.commande">
+                    <li *ngIf="comm.etat=='valider' && myZone==zone.id"> 
+                            <span><strong>Client : </strong> </span>
+                            {{comm.client.prenom+"  "+comm.client.nom}} <br>
+                            <span><strong>Telephone : </strong> </span>
+                            {{comm.client.telephone}}
+                            <input class="form-check-input " type="checkbox" id="checkboxNoLabel"  (change)="getIdCheck($event, comm.id)" aria-label="..."  style="margin-left: 5%;"/> 
+                            <ul>
+                                <li *ngFor="let ligne of comm.ligneCommande">
+                                <span> <strong>Produits :</strong>{{ligne.produit.nom}}</span> 
+                                </li>
+                            </ul> 
+                        <br>
+                    </li> 
+                </ul>
+            </div> 
         </div>
-</div>    
+      </div>
+ </div> 
+ <br><br>
+
+ <div class="card-body col-md-7">
+    <button type="button" *ngIf="myZone && myLivreur" class="btn btn-warning btn-block btn-sm" style="float: right;" (click)="livrer()">Faire la livraison</button>
+ </div>
 
 
+
+ <div> 
+     <strong><h3 class="text-center">Liste des livraisons</h3></strong> <br><br> 
+    <table class="table container" >
+        <thead>
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Livreur</th>
+            <th scope="col">Telephone Livreur</th>
+            <th scope="col" colspan="2" class="text-center">Options</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let li of tabLivraison" >     
+                 <td>{{li.date}}</td>
+                 <td>{{li.livreur.prenom+ " " +li.livreur.nom }}</td>
+                 <td>{{li.livreur.telephone}}</td>
+                 <td class="text-center">
+                    <a class="btn btn-outline-warning" [routerLink]="['/admin/livraisons/',li.id]">Detail</a>
+                    <a class="btn btn-outline-danger">Annuler</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br><br><br>
+</div>
 

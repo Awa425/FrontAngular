@@ -36,5 +36,6 @@ export class ListeCommandesComponent implements OnInit {
     this.commandeService.changeEtat(this.body, id).subscribe();  
     window.location.reload(); 
   }
+  
 
 }

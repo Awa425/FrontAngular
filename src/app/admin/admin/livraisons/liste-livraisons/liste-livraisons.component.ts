@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LivraisonService } from 'src/app/admin/admin-services/livraison.service';
+import { CommandeService } from 'src/app/service/commande.service';
 
 @Component({
   selector: 'app-liste-livraisons',
@@ -11,38 +13,49 @@ export class ListeLivraisonsComponent implements OnInit {
   data!: any;
   livreur!: any;
   tabIdProd: number[]=[];
+  tabLivraison: any[]=[];
   produits: string[] = []
   myZone: number = 0 ;
   myLivreur!: number
   body!: any;
-  constructor(private livraisonService: LivraisonService, private http: HttpClient) { }
+  etatCom!: any
+  etatLivreur!: any;
+  constructor(private livraisonService: LivraisonService, private http: HttpClient, private commandeService: CommandeService, private router: Router) { }
 
   ngOnInit(): void {
     this.livraisonService.getZones().subscribe(
       data=>{
         this.data = data;
+        // console.log(data);
+        
       }
     )
     this.livraisonService.getLivreurs().subscribe(
       livreur => {
         this.livreur = livreur;
       }
-    )  
+    )
+    
+    this.livraisonService.getLivraisons().subscribe(
+      livraison =>{
+        this.tabLivraison = livraison
+        console.log(this.tabLivraison);
+        
+      }
+    )
   }
  
   // ****************** FUNCTION ***********************
   getIdCheck(e: any, idProduit: number){
-   if (e.target.checked) {
-     if (!this.tabIdProd.includes(idProduit)) {
-        this.tabIdProd.push(idProduit);      
-     }  
-   }
-   else if (this.tabIdProd.includes(idProduit)) {
-     const index: number = this.tabIdProd.indexOf(idProduit)
-     this.tabIdProd.splice(index, 1);  
-   }
-  
-   
+      if (e.target.checked) {
+        if (!this.tabIdProd.includes(idProduit)) {
+            this.tabIdProd.push(idProduit);      
+        }  
+      }
+      else if (this.tabIdProd.includes(idProduit)) {
+        const index: number = this.tabIdProd.indexOf(idProduit)
+        this.tabIdProd.splice(index, 1);  
+      } 
   }
 
   zoneChoice(e: any){
@@ -62,8 +75,29 @@ export class ListeLivraisonsComponent implements OnInit {
       "livreur": "/api/livreurs/"+this.myLivreur,
       "commande": this.produits
     }
-    this.http.post<any>('http://127.0.0.1:8000/api/livraisons', this.body).subscribe();
-    window.location.reload();
+    console.log(this.produits);
+    
+    this.http.post<any>('http://127.0.0.1:8000/api/livraisons', this.body).subscribe(
+      result => {
+        if(result){
+          this.etatCom = {"etat": "livraison en cours"};
+          this.etatLivreur = {"disponibilite": "non"};
+          this.tabIdProd.forEach(elt => {
+          this.commandeService.changeEtat(this.etatCom,elt).subscribe();
+        })
+        this.commandeService.changeEtatLivreur(this.etatLivreur,this.myLivreur).subscribe();
+        }
+
+
+        this.router.navigateByUrl('/admin/livraisons', { skipLocationChange: true }).then(() => {
+          this.router.navigate(['/admin/livraisons']);
+      }); 
+
+        // this.router.navigateByUrl('admin/', {skipLocationChange: true}).then(() => {
+        //   this.router.navigate(['livraisons'])})
+    });
+    
   }
+
  
 }

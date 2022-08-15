@@ -17,13 +17,8 @@ export class CardComponent implements OnInit {
   constructor(private cartService: CartService, private pro: CatalogueService) { }
 
   ngOnInit(): void {
-    this.bool=true
-    // console.log(this.bool);
-    
-    this.pro.getProduis().subscribe(
-      // data => {console.log(data);
-      // }
-    );
+    this.bool=true    
+    this.pro.getProduis().subscribe();
 
     
   }
