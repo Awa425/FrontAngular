@@ -1,1 +1,29 @@
-<p>detail-livreur works!</p>
+<div class="d-flex justify-content-center align-items-center" style="border: 1px solid; width: 40px; height: 40px; border-radius: 50%; margin-left: 3%;">
+    <i class="fa-solid fa-arrow-left" style="margin-left: 2%;"  routerLink="/admin/livraisons"></i>
+</div>
+<div class="col-md-12 d-flex justify-content-center align-items-center">
+    <div class="col-md-9 col">
+        <div class="text-center bg-danger text-light " >Livraisons</div>
+        <div class="d-flex" style="border: 1px solid grey;">
+            <img src="../../assets/img/thiakthiak.png" class="img-fluid " alt="" style="width: 25%;">
+            <div style="margin-left: 10%;">
+                <span><strong>Prenom et nom : </strong>{{detailLivreur.prenom+ " " +detailLivreur.nom}}</span> <br>
+                <span><strong>Matricule : </strong>{{detailLivreur.matricule}}</span> <br>
+                <span><strong>Disponibilite : </strong>{{detailLivreur.disponibilite}}</span> <br>
+                <span><strong>Liste des commandes</strong></span>
+              
+            </div>
+            <div>
+                <div *ngFor="let li of detailLivreur.livraisons">
+                    <ul  *ngFor="let l of li.commande">
+                        <div class="d-flex">
+                            <li *ngIf="l.etat == 'livraison en cours'"><strong>Commande : </strong> {{l.id}}</li>
+                            <input *ngIf="l.etat == 'livraison en cours'" type="checkbox" name="" style="margin-left: 1%;" (change)="traitement($event, l.id)">
+                        </div>
+                    </ul>  
+                </div>
+            </div>
+        </div> <br>
+        <button class="btn btn-warning btn-block btn-sm" (click)="terminer(detailLivreur.id)">Terminer</button>
+      </div>
+ </div> 
