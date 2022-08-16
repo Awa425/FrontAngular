@@ -55,21 +55,21 @@
  <div class="col-md-12 d-flex justify-content-center align-items-center">
     <div class="col-md-6 col">
         <div class="text-center bg-danger text-light " >Livraisons</div>
-        <div class="d-flex justify-content-between" style="border: 1px solid grey;">
-            <img src="../../assets/img/thiakthiak.png" class="img-fluid " alt="" style="width: 25%;">
-            <div *ngFor="let zone of data">
+        <div class="d-flex " style="border: 1px solid grey;">
+            <img src="../../assets/img/thiakthiak.png" class="img-fluid " alt="" style="width: 25%; max-height: 25%;">
+            <div *ngFor="let zone of data" style=" margin-left: 2%;">
                 <ul *ngFor="let comm of zone.commande">
                     <li *ngIf="comm.etat=='valider' && myZone==zone.id"> 
                             <span><strong>Client : </strong> </span>
                             {{comm.client.prenom+"  "+comm.client.nom}} <br>
                             <span><strong>Telephone : </strong> </span>
                             {{comm.client.telephone}}
-                            <input class="form-check-input " type="checkbox" id="checkboxNoLabel"  (change)="getIdCheck($event, comm.id)" aria-label="..."  style="margin-left: 5%;"/> 
-                            <ul>
-                                <li *ngFor="let ligne of comm.ligneCommande">
+                            <input class="form-check-input" type="checkbox" id="checkboxNoLabel"  (change)="getIdCheck($event, comm.id)" aria-label="..."  style="margin-left: 5%;"/> 
+                            <!-- <ul> -->
+                                <!-- <li *ngFor="let ligne of comm.ligneCommande">
                                 <span> <strong>Produits :</strong>{{ligne.produit.nom}}</span> 
-                                </li>
-                            </ul> 
+                                </li> -->
+                            <!-- </ul>  -->
                         <br>
                     </li> 
                 </ul>
@@ -77,37 +77,64 @@
         </div>
       </div>
  </div> 
- <br><br>
+ <br><br> <br>
 
  <div class="card-body col-md-7">
     <button type="button" *ngIf="myZone && myLivreur" class="btn btn-warning btn-block btn-sm" style="float: right;" (click)="livrer()">Faire la livraison</button>
  </div>
 
+ <!--  *********** livreur *************** -->
+ <strong><h3 class="text-center">Liste des livreurs</h3></strong> <br><br> 
+
+ <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Prenom</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Telephone</th>
+      <th scope="col">Disponibilite</th>
+      <th scope="col">Traitement</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let l of livreur">
+      <td >{{l.prenom}}</td>
+      <td >{{l.nom}}</td>
+      <td >{{l.telephone}}</td>
+      <td >{{l.disponibilite}}</td>
+      <td>
+        <!-- <a *ngIf="l.disponibilite=='non'" class="btn btn-outline-warning" (click)="changeEtat(l.id)">change etat</a> -->
+        <a class="btn btn-outline-warning" [routerLink]="['/admin/livraisons/livreur/',l.id]"> traitement </a>
+      </td>
+    </tr>
+  </tbody>
+</table>  <br> <br><br>  
+
 
 
  <div> 
-     <strong><h3 class="text-center">Liste des livraisons</h3></strong> <br><br> 
-    <table class="table container" >
-        <thead>
-        <tr>
-            <th scope="col">Date</th>
-            <th scope="col">Livreur</th>
-            <th scope="col">Telephone Livreur</th>
-            <th scope="col" colspan="2" class="text-center">Options</th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let li of tabLivraison" >     
-                 <td>{{li.date}}</td>
-                 <td>{{li.livreur.prenom+ " " +li.livreur.nom }}</td>
-                 <td>{{li.livreur.telephone}}</td>
-                 <td class="text-center">
-                    <a class="btn btn-outline-warning" [routerLink]="['/admin/livraisons/',li.id]">Detail</a>
-                    <a class="btn btn-outline-danger">Annuler</a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <br><br><br>
+  <strong><h3 class="text-center">Liste des livraisons</h3></strong> <br><br> 
+ <table class="table container" >
+     <thead>
+     <tr>
+         <th scope="col">Date</th>
+         <th scope="col">Livreur</th>
+         <th scope="col">Telephone Livreur</th>
+         <th scope="col" colspan="2" class="text-center">Options</th>
+     </tr>
+     </thead>
+     <tbody>
+         <tr *ngFor="let li of tabLivraison" >     
+              <td>{{li.date}}</td>
+              <td>{{li.livreur.prenom+ " " +li.livreur.nom }}</td>
+              <td>{{li.livreur.telephone}}</td>
+              <td class="text-center">
+                 <a class="btn btn-outline-warning" [routerLink]="['/admin/livraisons/',li.id]">Detail</a>
+                 <a class="btn btn-outline-danger">Annuler</a>
+             </td>
+         </tr>
+     </tbody>
+ </table>
+ <br><br><br>
 </div>
 

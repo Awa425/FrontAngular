@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Commande } from '../produits/interfaces/produit.model';
+import { CatalogueService } from '../service/catalogue.service';
 import { CommandeService } from '../service/commande.service';
 
 @Component({
@@ -13,9 +14,9 @@ export class CommandeComponent implements OnInit {
     par!: number
     body!: any;
     oneCom!: any
+    searchText: string=''
 
-
-  constructor(private commandeService: CommandeService, private paramRoute: ActivatedRoute) { }
+  constructor(private commandeService: CommandeService, private paramRoute: ActivatedRoute, private catalogueService: CatalogueService) { }
 
   ngOnInit(): void {    
     this.commandeService.getCommandeClient(21).subscribe(client => { 
@@ -33,6 +34,7 @@ export class CommandeComponent implements OnInit {
       "etat": "Anuler"
     }
 
+    this.searchText=this.catalogueService.myFormateDate();    
     
  
   }

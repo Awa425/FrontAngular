@@ -21,5 +21,13 @@ export class LivraisonService {
   getLivreurs():Observable<any>{
     return this.http.get<any>('http://127.0.0.1:8000/api/livreurs');
   }
+  getOneLivreur(id: number):Observable<any>{
+    return this.http.get<any>('http://127.0.0.1:8000/api/livreurs/'+id);
+  }
+  
+  changeEtat(body: any, id: number):Observable<any>{
+    return this.http.put<any>('http://127.0.0.1:8000/api/livreurs/'+id, body)
+  }
+ 
   
 }

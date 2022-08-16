@@ -1,7 +1,10 @@
 <app-carousel></app-carousel>
+<h2 class="text-center">Liste de mes commandes</h2> <br>
+<div class="search-hero" style="width: 15%">
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Search">
+</div> <br>
 <div class="row">
-    <div class="col-sm-7">
-        <p>Liste de mes commandes</p>
+    <div >
         <table class="table container">
             <thead>
             <tr>
@@ -11,7 +14,7 @@
             </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let c of commandeClient">     
+                <tr *ngFor="let c of commandeClient | filter: searchText">     
                     <td>{{c.date}}</td>
                     <td>{{c.etat}}</td>
                     <td><a [routerLink]="['/client/commandes/',c.id]"  (click)="detail(c.id)">Detail</a></td>

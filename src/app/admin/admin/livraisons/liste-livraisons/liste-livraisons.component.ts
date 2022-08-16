@@ -26,20 +26,21 @@ export class ListeLivraisonsComponent implements OnInit {
     this.livraisonService.getZones().subscribe(
       data=>{
         this.data = data;
-        // console.log(data);
         
       }
     )
     this.livraisonService.getLivreurs().subscribe(
       livreur => {
         this.livreur = livreur;
+        console.log(this.livreur);
+        
       }
     )
     
     this.livraisonService.getLivraisons().subscribe(
       livraison =>{
         this.tabLivraison = livraison
-        console.log(this.tabLivraison);
+        // console.log(this.tabLivraison);
         
       }
     )
@@ -66,6 +67,13 @@ export class ListeLivraisonsComponent implements OnInit {
     this.myLivreur = e
   }
 
+  
+
+  changeEtat(id: number){
+    const body = {'disponibilite' : 'oui'}
+    this.livraisonService.changeEtat(body, id).subscribe()
+  }
+
   livrer(){
     this.tabIdProd.forEach(elt => {
       this.produits.push('/api/commandes/' + elt);
@@ -86,15 +94,14 @@ export class ListeLivraisonsComponent implements OnInit {
           this.commandeService.changeEtat(this.etatCom,elt).subscribe();
         })
         this.commandeService.changeEtatLivreur(this.etatLivreur,this.myLivreur).subscribe();
-        }
+      }
+      // this.router.navigate(['/admin/livraisons']);
 
+      //   this.router.navigateByUrl('/admin/livraisons', { skipLocationChange: true }).then(() => {
+      //     this.router.navigate(['/admin/livraisons']);
+      // }); 
 
-        this.router.navigateByUrl('/admin/livraisons', { skipLocationChange: true }).then(() => {
-          this.router.navigate(['/admin/livraisons']);
-      }); 
-
-        // this.router.navigateByUrl('admin/', {skipLocationChange: true}).then(() => {
-        //   this.router.navigate(['livraisons'])})
+       
     });
     
   }

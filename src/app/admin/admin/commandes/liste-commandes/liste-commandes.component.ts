@@ -9,7 +9,8 @@ import { CommandeService } from 'src/app/service/commande.service';
 export class ListeCommandesComponent implements OnInit {
   commandes!: any;
   searchText: string ='';
-  body!: any;
+  body1!: any;
+  body2!: any;
   constructor(private commandeService: CommandeService) { }
 
   ngOnInit(): void {
@@ -20,9 +21,12 @@ export class ListeCommandesComponent implements OnInit {
     )
     this.searchText = this.myFormateDate();    
 
-    this.body={
+    this.body1={
       "etat": "Anuler"
     } 
+    this.body2={
+      "etat": "valider"
+    }
   }
 // 22/10/2022
   myFormateDate(){
@@ -32,9 +36,22 @@ export class ListeCommandesComponent implements OnInit {
     let year= date.toLocaleDateString().slice(6);    
     return year+"-"+month+"-"+day ;
   }
-  changeEta(id: number){ 
-    this.commandeService.changeEtat(this.body, id).subscribe();  
-    window.location.reload(); 
+  changeEta(id: number, test: number){ 
+    if (test ==2) { 
+      this.commandeService.changeEtat(this.body1, id).subscribe(
+        com => {
+          window.location.reload();
+        }
+      );  
+    }
+    if (test==1) { 
+      this.commandeService.changeEtat(this.body2, id).subscribe(
+        com => {
+          window.location.reload();
+        }
+      );  
+    }
+   
   }
   
 

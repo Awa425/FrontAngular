@@ -20,7 +20,7 @@ export class DetailLivraisonComponent implements OnInit {
         this.livraisonService.getOneLivraisons(id).subscribe(
           livraison => {
             this.livraison = livraison
-            console.log(this.livraison.commande[0].client)
+            console.log(this.livraison.commande[0])
           }
           
         )
