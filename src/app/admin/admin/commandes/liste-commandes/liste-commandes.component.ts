@@ -9,11 +9,12 @@ import { CommandeService } from 'src/app/service/commande.service';
 export class ListeCommandesComponent implements OnInit {
   commandes!: any;
   searchText: string ='';
-  body1!: any;
-  body2!: any;
+  filtreEnCours : string ='';
   constructor(private commandeService: CommandeService) { }
 
   ngOnInit(): void {
+    this.filtreEnCours = 'en cours'
+
     this.commandeService.getCommande().subscribe(
       commandes => {
         this.commandes=commandes
@@ -21,12 +22,7 @@ export class ListeCommandesComponent implements OnInit {
     )
     this.searchText = this.myFormateDate();    
 
-    this.body1={
-      "etat": "Anuler"
-    } 
-    this.body2={
-      "etat": "valider"
-    }
+  
   }
 // 22/10/2022
   myFormateDate(){
@@ -36,19 +32,19 @@ export class ListeCommandesComponent implements OnInit {
     let year= date.toLocaleDateString().slice(6);    
     return year+"-"+month+"-"+day ;
   }
-  changeEta(id: number, test: number){ 
-    if (test ==2) { 
-      this.commandeService.changeEtat(this.body1, id).subscribe(
-        com => {
-          window.location.reload();
-        }
-      );  
+  changeEta(id: number, etat: string){   
+    if (etat =='valider') { 
+      const body={"etat": "en cours"}
+      this.commandeService.changeEtat(body, id).subscribe(
+        com => {window.location.reload();}
+        // {error: err => console.log(err)}
+        );  
+        
     }
-    if (test==1) { 
-      this.commandeService.changeEtat(this.body2, id).subscribe(
-        com => {
-          window.location.reload();
-        }
+    if (etat=='en cours') { 
+      const body={"etat": "valider"}
+      this.commandeService.changeEtat(body, id).subscribe(
+        com => {window.location.reload();}
       );  
     }
    

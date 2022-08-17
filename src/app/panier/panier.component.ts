@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Produits } from '../produits/interfaces/produit.model';
 import { CartService } from '../service/cart.service';
@@ -19,7 +20,7 @@ export class PanierComponent implements OnInit {
 
   // bodyCommande: any;
  
-  constructor(private dataCart: CartService, private zoneService: ZoneService, private commandeService: CommandeService, private http:HttpClient) { }
+  constructor(private dataCart: CartService, private zoneService: ZoneService, private commandeService: CommandeService, private http:HttpClient, private router: Router) { }
 
   items$?: Observable<any> = this.dataCart.card$;
   qte!: number;
@@ -127,10 +128,10 @@ export class PanierComponent implements OnInit {
           commande => {
             if (commande) {
               this.dataCart.clearCart(data);
-              window.location.reload();
             }
           }
-        );
+          );
+          this.router.navigate(['/client/commandes'])
       }
     })
   }

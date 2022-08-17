@@ -51,6 +51,7 @@ export class CommandeService {
 
 changeEtat(body: any, id: number):Observable<any>{
   return this.http.put<any>('http://127.0.0.1:8000/api/commandes/'+id, body)
+  .pipe(catchError(this.handleError));
 }
 changeEtatLivreur(body: any, id: number):Observable<any>{
   return this.http.put<any>('http://127.0.0.1:8000/api/livreurs/'+id, body)
@@ -74,13 +75,6 @@ myFormateDate(){
   let year= date.toLocaleDateString().slice(6);    
   return year+"-"+month+"-"+day ;
 }
-
-
-
-
-
-
-
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {

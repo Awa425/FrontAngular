@@ -2,7 +2,7 @@
 <h3 class="text-center" *ngIf="searchText!=myFormateDate()">Les commandes du {{searchText}}</h3>
 
 <div class="search-hero" style="width: 15%">
-    <input class="form-control" type="date" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Search">
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="&#61442;  Search">
 </div>
 <div class="row">
     <div  >
@@ -15,13 +15,13 @@
             </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let c of commandes | filter: searchText">     
+                <tr *ngFor="let c of commandes | filter: searchText ">     
                     <td>{{c.date | date: 'HH:mm:ss'}}</td>
                     <td>{{c.etat}}</td>
                     <td class="text-center">
                         <a [routerLink]="['/admin/commandes',c.id]"  class="btn btn-outline-warning" >Detail</a>
-                        <a class="btn btn-outline-info" (click)="changeEta(c.id,1)">Valider</a>
-                        <a class="btn btn-outline-danger" (click)="changeEta(c.id,2)">Annuler</a>
+                        <button class="btn btn-outline-danger" *ngIf="c.etat=='valider'"  (click)="changeEta(c.id,c.etat)">Annuler</button>
+                        <button class="btn btn-outline-info" *ngIf="c.etat=='en cours'"  (click)="changeEta(c.id,c.etat)">Valider</button>
                     </td>
                 </tr>
             </tbody>

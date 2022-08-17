@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LivraisonService } from '../../admin-services/livraison.service';
 
 @Component({
   selector: 'app-livraisons',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./livraisons.component.css']
 })
 export class LivraisonsComponent implements OnInit {
-
-  constructor() { }
+  tabLivraison: any[]=[];
+  constructor(private livraisonService: LivraisonService) { }
 
   ngOnInit(): void {
+    this.livraisonService.getLivraisons().subscribe(
+      livraison =>{
+        this.tabLivraison = livraison        
+      }
+    )
   }
 
 }

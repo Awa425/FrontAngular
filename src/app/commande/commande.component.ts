@@ -13,12 +13,15 @@ export class CommandeComponent implements OnInit {
     commandeClient: any;
     par!: number
     body!: any;
+    filtreEnCours : string = ''
     oneCom!: any
     searchText: string=''
 
   constructor(private commandeService: CommandeService, private paramRoute: ActivatedRoute, private catalogueService: CatalogueService) { }
 
-  ngOnInit(): void {    
+  ngOnInit(): void { 
+    this.filtreEnCours = 'en cours';
+
     this.commandeService.getCommandeClient(21).subscribe(client => { 
       this.commandeClient=client
     }
@@ -31,7 +34,7 @@ export class CommandeComponent implements OnInit {
      
     //***************** */ Annuler Commande ******************
     this.body={
-      "etat": "Anuler"
+      "etat": "annuler"
     }
 
     this.searchText=this.catalogueService.myFormateDate();    
@@ -43,18 +46,30 @@ export class CommandeComponent implements OnInit {
 
   // *************** FUNCTIONS ******************
 
-  changeEta(id: number){ 
-    this.commandeService.changeEtat(this.body, id).subscribe(
-      etat => {
-        if (etat) {
+  changeEta(id: number, etat: string){ 
+    console.log(etat);
+      if (etat == 'annuler') {
+      const body = {"etat": "en cours"}
+         this.commandeService.changeEtat(body, id).subscribe(
+          etat => {
+          if (etat) {
           window.location.reload();
         }
-      }
-    );   
-  }
-  detail(id: number){
-    // console.log(id);
+        }
+      ); 
+    }
+    if (etat == 'en cours') {
+      const body = {"etat": "annuler"}
+         this.commandeService.changeEtat(body, id).subscribe(
+          etat => {
+          if (etat) {
+          window.location.reload();
+        }
+        }
+      ); 
+    }
     
+   
   }
 
 }

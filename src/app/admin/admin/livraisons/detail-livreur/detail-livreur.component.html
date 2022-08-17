@@ -17,13 +17,14 @@
                 <div *ngFor="let li of detailLivreur.livraisons">
                     <ul  *ngFor="let l of li.commande">
                         <div class="d-flex">
-                            <li *ngIf="l.etat == 'livraison en cours'"><strong>Commande : </strong> {{l.id}}</li>
-                            <input *ngIf="l.etat == 'livraison en cours'" type="checkbox" name="" style="margin-left: 1%;" (change)="traitement($event, l.id)">
+                            <li *ngIf="l.etat == 'en livraison'"><strong>Commande : </strong> {{l.id}}</li>
+                            <input *ngIf="l.etat == 'en livraison'" type="checkbox" name="" style="margin-left: 1%;" (change)="traitement($event, l.id)">
                         </div>
                     </ul>  
                 </div>
             </div>
         </div> <br>
         <button class="btn btn-warning btn-block btn-sm" (click)="terminer(detailLivreur.id)">Terminer</button>
+        <button class="btn btn-danger btn-block btn-sm" (click)="annuler(detailLivreur.id)" >Annuler</button>
       </div>
  </div> 

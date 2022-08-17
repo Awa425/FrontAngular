@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddComponent } from '../produits/add/add.component';
 import { AdminComponent } from './admin/admin.component';
 import { CommandesComponent } from './admin/commandes/commandes.component';
 import { DetailAdminCommComponent } from './admin/commandes/detail-admin-comm/detail-admin-comm.component';
@@ -10,6 +9,7 @@ import { DetailLivraisonComponent } from './admin/livraisons/detail-livraison/de
 import { DetailLivreurComponent } from './admin/livraisons/detail-livreur/detail-livreur.component';
 import { ListeLivraisonsComponent } from './admin/livraisons/liste-livraisons/liste-livraisons.component';
 import { LivraisonsComponent } from './admin/livraisons/livraisons.component';
+import { AddComponent } from './admin/produits/add/add.component';
 import { ListProduitsComponent } from './admin/produits/list-produits/list-produits.component';
 import { ProduitsComponent } from './admin/produits/produits.component';
 
@@ -42,8 +42,8 @@ const routes: Routes = [
         path: 'produits',
         component: ListProduitsComponent,
         children: [
-          {path: 'new', component:AddComponent},
-          {path: '', redirectTo: '/admin/produits', pathMatch: 'full'}
+          {path: 'new', component: AddComponent},
+          {path: '', component: ListProduitsComponent}
         ]
       },
       

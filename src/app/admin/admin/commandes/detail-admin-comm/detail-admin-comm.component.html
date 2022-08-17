@@ -4,8 +4,8 @@
       <div class="row d-flex justify-content-center my-4">
         <div class="col-md-8">
           <div class="card mb-4">
-            <div class="card-header py-3">
-              <h5 class="mb-0">Detail du produit</h5>
+            <div class="card-header py-3 text-center" style="background-color: #dc3545; color: white">
+              <h5 class="mb-0">Detail du Commande</h5>
             </div>
             <div class="card-body">
               <!--**************** Single item ******************-->
@@ -22,6 +22,7 @@
                 </div>
                 <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
                   <p><strong>Date: </strong>{{data.date}}</p>
+                  <p><strong>Zone: </strong>{{data.zone.nom_zone}}</p>
                   <p><strong>Produits: </strong>{{ligne.produit.nom}}</p>
                   <p><strong>Quantite: </strong>{{ligne.quanite}}</p>
                   <button type="button" class="btn btn-primary btn-sm me-1 mb-2" data-mdb-toggle="tooltip"

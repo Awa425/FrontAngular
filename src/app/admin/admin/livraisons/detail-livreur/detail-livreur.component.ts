@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { LivraisonService } from 'src/app/admin/admin-services/livraison.service';
 import { CommandeService } from 'src/app/service/commande.service';
 
@@ -11,7 +11,7 @@ import { CommandeService } from 'src/app/service/commande.service';
 export class DetailLivreurComponent implements OnInit {
   detailLivreur!: any
   tabIdCom: number[]=[];
-  constructor(private activatedRoute: ActivatedRoute, private livraisonService: LivraisonService, private commandeService: CommandeService) { }
+  constructor(private activatedRoute: ActivatedRoute, private livraisonService: LivraisonService, private commandeService: CommandeService, private router: Router) { }
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(
@@ -41,13 +41,24 @@ export class DetailLivreurComponent implements OnInit {
   }
 
   terminer(id: number){
-    // console.log(id);
     const bodyLivreur = {'disponibilite': 'oui'}
     this.livraisonService.changeEtat(bodyLivreur, id).subscribe()
     this.tabIdCom.forEach(elt => {
       const bodyCom = {'etat': 'terminer'}
       this.commandeService.changeEtat(bodyCom, elt).subscribe()
+      this.router.navigate(['/admin/livraisons'])
     });
+  }
+  annuler(id: number){
+    const bodyLivreur = {'disponibilite': 'oui'}
+    this.livraisonService.changeEtat(bodyLivreur, id).subscribe()
+    this.tabIdCom.forEach(elt => {
+      const bodyCom = {'etat': 'annuler'}
+      this.commandeService.changeEtat(bodyCom, elt).subscribe(
+        com => {this.router.navigate(['/admin/livraisons'])}
+      )
+    });
+    
   }
 
 }

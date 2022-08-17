@@ -24,15 +24,16 @@ export class ListeCommParDateComponent implements OnInit {
         this.commandes=commandes
       }
     )
-    this.searchText = this.myFormateDate();    
+    this.searchText = this.myFormateDate();  
+      
 
     this.body={
-      "etat": "Anuler"
+      "etat": "annuler"
     }    
   }
 
   changeEta(id: number){ 
-    this.commandeService.changeEtat(this.body, id).subscribe();  
+    this.commandeService.changeEtat(this.body, id).subscribe( );  
     this.reloadCurrentPage(); 
   }
 

@@ -14,11 +14,15 @@
             </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let c of commandeClient | filter: searchText">     
+                <tr *ngFor="let c of commandeClient | filter: searchText ">     
                     <td>{{c.date}}</td>
                     <td>{{c.etat}}</td>
-                    <td><a [routerLink]="['/client/commandes/',c.id]"  (click)="detail(c.id)">Detail</a></td>
-                    <td><a class="btn btn-outline-danger" (click)="changeEta(c.id)">Annuler</a></td>
+                    <td class="text-center">
+                        <a class="btn btn-outline-info" [routerLink]="['/client/commandes/',c.id]" style="margin-right: 2%;">Detail</a>
+                        <a class="btn btn-outline-danger" *ngIf="c.etat == 'en cours'" (click)="changeEta(c.id, c.etat)">Annuler</a>
+                        <a class="btn btn-outline-info" *ngIf="c.etat == 'annuler'" (click)="changeEta(c.id, c.etat)">Commander</a>
+                    </td>
+                    
                 </tr>
             </tbody>
         </table>

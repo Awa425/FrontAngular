@@ -20,30 +20,37 @@ export class ListeLivraisonsComponent implements OnInit {
   body!: any;
   etatCom!: any
   etatLivreur!: any;
+  filtreLivreurDispo: string=''
+  filtreLivreurNonDispo: string=''
+  filtreZone: string=''
+  nomLivreur: string=''
+  prenomLivreur: string=''
   constructor(private livraisonService: LivraisonService, private http: HttpClient, private commandeService: CommandeService, private router: Router) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void {    
+    this.filtreLivreurDispo = 'oui' 
+    this.filtreZone = 'valider'
+    this.filtreLivreurNonDispo = 'non'
+
     this.livraisonService.getZones().subscribe(
       data=>{
-        this.data = data;
-        
+        this.data = data; 
       }
     )
+
     this.livraisonService.getLivreurs().subscribe(
       livreur => {
         this.livreur = livreur;
-        console.log(this.livreur);
-        
       }
     )
     
+
     this.livraisonService.getLivraisons().subscribe(
       livraison =>{
-        this.tabLivraison = livraison
-        // console.log(this.tabLivraison);
-        
+        this.tabLivraison = livraison        
       }
     )
+
   }
  
   // ****************** FUNCTION ***********************
@@ -63,8 +70,11 @@ export class ListeLivraisonsComponent implements OnInit {
     this.myZone = e  
   }
 
-  livreurCheck(e: any){
-    this.myLivreur = e
+  livreurCheck(id: any, prenom: string, nom: string){
+    this.myLivreur = id
+    this.nomLivreur = nom
+    this.prenomLivreur = prenom
+
   }
 
   
@@ -83,27 +93,22 @@ export class ListeLivraisonsComponent implements OnInit {
       "livreur": "/api/livreurs/"+this.myLivreur,
       "commande": this.produits
     }
-    console.log(this.produits);
     
     this.http.post<any>('http://127.0.0.1:8000/api/livraisons', this.body).subscribe(
       result => {
         if(result){
-          this.etatCom = {"etat": "livraison en cours"};
+          this.etatCom = {"etat": "en livraison"};
           this.etatLivreur = {"disponibilite": "non"};
           this.tabIdProd.forEach(elt => {
           this.commandeService.changeEtat(this.etatCom,elt).subscribe();
         })
-        this.commandeService.changeEtatLivreur(this.etatLivreur,this.myLivreur).subscribe();
-      }
-      // this.router.navigate(['/admin/livraisons']);
+        this.commandeService.changeEtatLivreur(this.etatLivreur,this.myLivreur).subscribe(
+          result => {window.location.reload()}
+        );
 
-      //   this.router.navigateByUrl('/admin/livraisons', { skipLocationChange: true }).then(() => {
-      //     this.router.navigate(['/admin/livraisons']);
-      // }); 
-
-       
-    });
-    
+        this.router.navigate(['/admin/livraisons'])
+      } 
+    });  
   }
 
  

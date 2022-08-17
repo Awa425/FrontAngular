@@ -20,7 +20,7 @@ export class DetailAdminCommComponent implements OnInit {
           donnees=>{
             this.data=donnees;
             this.ligneComm=this.data.ligneCommande
-            console.log(this.ligneComm);
+            console.log(this.data.zone.nom_zone);
           }
         )  
       }
