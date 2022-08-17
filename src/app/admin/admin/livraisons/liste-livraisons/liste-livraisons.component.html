@@ -10,7 +10,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Livreurs</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Livreurs Disponible</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -24,13 +24,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let l of livreur">
+              <tr *ngFor="let l of livreur | filter: filtreLivreurDispo">
                 <td >{{l.prenom}}</td>
                 <td >{{l.nom}}</td>
                 <td >{{l.telephone}}</td>
                 <td >{{l.disponibilite}}</td>
                 <td>
-                  <input *ngIf="l.disponibilite=='oui'" class="form-check-input" type="radio" [(value)]="l.id"  (click)="livreurCheck(l.id)" name="flexRadioDefault" id="flexRadioDefault2" >
+                  <input *ngIf="l.disponibilite=='oui'" class="form-check-input" type="radio" [(value)]="l.id"  (click)="livreurCheck(l.id, l.prenom, l.nom)" name="flexRadioDefault" id="flexRadioDefault2" >
                 </td>
               </tr>
             </tbody>
@@ -45,10 +45,14 @@
   </div>
 
   <div class="d-flex">
-    <button type="button" class="btn btn-outline-danger btn-block btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">Selecionner un livreur</button>
+    <div>
+      <button type="button" class="btn btn-outline-danger btn-block btn-lg" data-bs-toggle="modal" data-bs-target="#exampleModal">Selecionner un livreur</button> <br> <br>
+      <span *ngIf="myLivreur"><strong>Livreur choisit : </strong> {{prenomLivreur+ " " +nomLivreur}}</span>
+    </div>
+
     <select class="select btn btn-outline-danger btn-block btn-lg" style="margin-left: 5%;">
-        <option selected style="color: rgb(216, 213, 213);">Choisi une zone !!!</option>
-        <option *ngFor="let zone of data" value={{zone.id}} (click)="zoneChoice(zone.id)">{{zone.nom_zone}}</option>
+        <option selected style="color: rgb(216, 213, 213);"> Zone de livraison !!!</option>
+        <option *ngFor="let zone of data | filter: filtreZone" value={{zone.id}} (click)="zoneChoice(zone.id)">{{zone.nom_zone}}</option>
       </select>  
   </div> <br><br> <br><br>
 
@@ -65,11 +69,6 @@
                             <span><strong>Telephone : </strong> </span>
                             {{comm.client.telephone}}
                             <input class="form-check-input" type="checkbox" id="checkboxNoLabel"  (change)="getIdCheck($event, comm.id)" aria-label="..."  style="margin-left: 5%;"/> 
-                            <!-- <ul> -->
-                                <!-- <li *ngFor="let ligne of comm.ligneCommande">
-                                <span> <strong>Produits :</strong>{{ligne.produit.nom}}</span> 
-                                </li> -->
-                            <!-- </ul>  -->
                         <br>
                     </li> 
                 </ul>
@@ -84,8 +83,7 @@
  </div>
 
  <!--  *********** livreur *************** -->
- <strong><h3 class="text-center">Liste des livreurs</h3></strong> <br><br> 
-
+ <strong><h3 class="text-center">Traitement des livraison</h3></strong> <br><br> 
  <table class="table">
   <thead>
     <tr>
@@ -97,13 +95,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let l of livreur">
+    <tr *ngFor="let l of livreur | filter: filtreLivreurNonDispo">
       <td >{{l.prenom}}</td>
       <td >{{l.nom}}</td>
       <td >{{l.telephone}}</td>
       <td >{{l.disponibilite}}</td>
       <td>
-        <!-- <a *ngIf="l.disponibilite=='non'" class="btn btn-outline-warning" (click)="changeEtat(l.id)">change etat</a> -->
         <a class="btn btn-outline-warning" [routerLink]="['/admin/livraisons/livreur/',l.id]"> traitement </a>
       </td>
     </tr>
@@ -112,8 +109,12 @@
 
 
 
- <div> 
-  <strong><h3 class="text-center">Liste des livraisons</h3></strong> <br><br> 
+
+
+
+
+ <!-- <div>  -->
+  <!-- <strong><h3 class="text-center">Liste des livraisons</h3></strong> <br><br> 
  <table class="table container" >
      <thead>
      <tr>
@@ -134,7 +135,7 @@
              </td>
          </tr>
      </tbody>
- </table>
- <br><br><br>
-</div>
+ </table> -->
+ <!-- <br><br><br>
+</div> -->
 
