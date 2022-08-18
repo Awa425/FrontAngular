@@ -1,95 +1,64 @@
-hello add
-<!-- <div class="container tm-mt-big tm-mb-big">
-    <div class="row">
-      <div class="col-xl-9 col-lg-10 col-md-12 col-sm-12 mx-auto">
-        <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-          <div class="row">
-            <div class="col-12">
-              <h2 class="tm-block-title d-inline-block">Add Product</h2>
-            </div>
-          </div>
-          <div class="row tm-edit-product-row">
-            <div class="col-xl-6 col-lg-6 col-md-12">
-              <form action="" class="tm-edit-product-form">
-                <div class="form-group mb-3">
-                  <label for="name">Product Name</label>
-                  <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    class="form-control validate"
-                    required/>
-                </div>
-
-                <div class="form-group mb-3">
-                  <label for="description" >Description</label>
-                  <textarea
-                    class="form-control validate"
-                    rows="3"
-                    required></textarea>
-                </div>
-
-                <div class="form-group mb-3">
-                  <label for="category">Category</label>
-                  <select
-                    class="custom-select tm-select-accounts"
-                    id="category">
-                    <option selected>Select category</option>
-                    <option value="1">New Arrival</option>
-                    <option value="2">Most Popular</option>
-                    <option value="3">Trending</option>
-                  </select>
-                </div>
-
-                <div class="row">
-                    <div class="form-group mb-3 col-xs-12 col-sm-6">
-                        <label
-                          for="expire_date"
-                          >Expire Date
-                        </label>
-                        <input
-                          id="expire_date"
-                          name="expire_date"
-                          type="text"
-                          class="form-control validate"
-                          data-large-mode="true"/>
-                      </div>
-
-                      <div class="form-group mb-3 col-xs-12 col-sm-6">
-                        <label for="stock">Units In Stock</label>
-                        <input
-                          id="stock"
-                          name="stock"
-                          type="text"
-                          class="form-control validate"
-                          required />
-                      </div>
-                </div>
-              </form>
-
-            </div> -->
-            <!-- <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-              <div class="tm-product-img-dummy mx-auto">
-                <i
-                  class="fas fa-cloud-upload-alt tm-upload-icon"
-                  onclick="document.getElementById('fileInput').click();"
-                ></i>
-              </div>
-              <div class="custom-file mt-3 mb-3">
-                <input id="fileInput" type="file" style="display:none;" />
-                <input
-                  type="button"
-                  class="btn btn-primary btn-block mx-auto"
-                  value="UPLOAD PRODUCT IMAGE"
-                  onclick="document.getElementById('fileInput').click();" />
-              </div>
-            </div> -->
-            <!-- <div class="col-12">
-              <button type="submit" class="btn btn-primary btn-block text-uppercase">Add Product Now</button>
-            </div> -->
-          <!-- </form> -->
-          <!-- </div>
-        </div>
+<div >
+    <select>
+        <option><a >Veuillez choisit le type de produit</a></option>
+        <option><a (click)="typeChoice('burger')" >burger</a></option>
+        <option><a (click)="typeChoice('fritte')">Fritte</a></option>
+        <option><a (click)="typeChoice('boisson')">Boisson</a></option>
+        <option><a (click)="typeChoice('menu')">Menu</a></option>
+    </select>
+</div>
+<section id="book-a-table" class="book-a-table">
+    <div class="container"  >
+      <div class="section-header">
+        <h2>Espace admin</h2>
+        <p>Ajouter <span>Vos Burgers</span>  ici</p>
       </div>
+
+      <div class="row g-0">
+        <div class="col-lg-4 reservation-img" style="background-image: url(assets/img/produit-plat.jpeg);" ></div>
+        <div class="col-lg-8 d-flex align-items-center reservation-form-bg">
+          <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form" [formGroup]="myForm" (ngSubmit)="submit()">
+            <div class="row gy-4">
+              <div class="col-lg-4 col-md-6" class="form-group">
+                <input type="text" ngModel formControlName="nom" class="form-control" id="nom" placeholder="Nom du produit">
+                <div class="validate"></div>
+              </div>
+              <div class="col-lg-4 col-md-6" >
+                <input type="number" ngModel class="form-control" formControlName="prix" id="number" placeholder="Entrer le prix">
+                <div class="validate"></div>
+              </div>
+              <div class="col-lg-4 col-md-6">
+                <input type="file" ngModel class="form-control" name="pathFile" id="file" placeholder="Image" (change)="onFileChange($event)">
+                <div class="validate"></div>
+              </div>
+              <!-- <div class="col-lg-4 col-md-6">
+                <input type="text" ngModel name="etat" class="form-control"  placeholder="Etat" value="1" readonly>
+                <div class="validate"></div>
+              </div> -->
+              <!-- <div class="col-lg-4 col-md-6">
+                <input type="text" class="form-control" name="time" id="time" placeholder="Time">
+                <div class="validate"></div>
+              </div> -->
+              <!-- <div class="col-lg-4 col-md-6">
+                <input type="number" class="form-control" name="people" id="people" placeholder="# of people">
+                <div class="validate"></div>
+              </div> -->
+            </div>
+            <!-- <div class="form-group mt-3">
+              <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
+              <div class="validate"></div>
+            </div> -->
+            <!-- <div class="mb-3">
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
+            </div> --> <br>
+            <div class="text-center"><button type="submit" >Ajouter</button></div>
+          </form>
+        </div><!-- End Reservation Form -->
+
+      </div>
+
     </div>
-  </div> -->
+  </section><!-- End Book A Table Section -->
+

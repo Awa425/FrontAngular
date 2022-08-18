@@ -108,34 +108,35 @@
 </table>  <br> <br><br>  
 
 
+ <div> 
+  <h3 class="text-center" *ngIf="filtreEtatLivraison=='etape 1'">Livraisons en cours</h3>
+  <h3 class="text-center" *ngIf="filtreEtatLivraison!='etape 1'">Liste des livraisons </h3>
 
-
-
-
-
- <!-- <div>  -->
-  <!-- <strong><h3 class="text-center">Liste des livraisons</h3></strong> <br><br> 
- <table class="table container" >
-     <thead>
-     <tr>
-         <th scope="col">Date</th>
-         <th scope="col">Livreur</th>
-         <th scope="col">Telephone Livreur</th>
-         <th scope="col" colspan="2" class="text-center">Options</th>
-     </tr>
-     </thead>
-     <tbody>
-         <tr *ngFor="let li of tabLivraison" >     
-              <td>{{li.date}}</td>
-              <td>{{li.livreur.prenom+ " " +li.livreur.nom }}</td>
-              <td>{{li.livreur.telephone}}</td>
-              <td class="text-center">
-                 <a class="btn btn-outline-warning" [routerLink]="['/admin/livraisons/',li.id]">Detail</a>
-                 <a class="btn btn-outline-danger">Annuler</a>
-             </td>
-         </tr>
-     </tbody>
- </table> -->
- <!-- <br><br><br>
-</div> -->
+  <div class="search-hero" style="width: 15%">
+      <input class="form-control" type="text" name="search" [(ngModel)]="filtreEtatLivraison" autocomplete="off" placeholder="&#61442;  Search">
+  </div>
+    <table class="table container" >
+        <thead>
+        <tr>
+            <th scope="col">Date</th>
+            <th scope="col">Livreur</th>
+            <th scope="col">Telephone Livreur</th>
+            <th scope="col">Etat</th>
+            <th scope="col" colspan="2" class="text-center">Options</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let li of tabLivraison | filter: filtreEtatLivraison" >     
+                  <td>{{li.date}}</td>
+                  <td>{{li.livreur.prenom+ " " +li.livreur.nom }}</td>
+                  <td>{{li.livreur.telephone}}</td>
+                  <td>{{li.etat}}</td>
+                  <td class="text-center">
+                    <a class="btn btn-outline-warning" [routerLink]="['/admin/livraisons/',li.id]">Detail</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br><br><br>
+</div>
 

@@ -20,7 +20,7 @@
                     <td class="text-center">
                         <a class="btn btn-outline-info" [routerLink]="['/client/commandes/',c.id]" style="margin-right: 2%;">Detail</a>
                         <a class="btn btn-outline-danger" *ngIf="c.etat == 'en cours'" (click)="changeEta(c.id, c.etat)">Annuler</a>
-                        <a class="btn btn-outline-info" *ngIf="c.etat == 'annuler'" (click)="changeEta(c.id, c.etat)">Commander</a>
+                        <a class="btn btn-outline-info" *ngIf="c.etat == 'annuler'" (click)="changeEta(c.id, c.etat)">recommander</a>
                     </td>
                     
                 </tr>

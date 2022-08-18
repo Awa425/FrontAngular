@@ -42,7 +42,9 @@ export class DetailLivreurComponent implements OnInit {
 
   terminer(id: number){
     const bodyLivreur = {'disponibilite': 'oui'}
+    const bodyLivraison = {'etat': 'etape 2'}
     this.livraisonService.changeEtat(bodyLivreur, id).subscribe()
+    // this.livraisonService.changeEtatLivraison(bodyLivraison, )
     this.tabIdCom.forEach(elt => {
       const bodyCom = {'etat': 'terminer'}
       this.commandeService.changeEtat(bodyCom, elt).subscribe()
@@ -54,9 +56,8 @@ export class DetailLivreurComponent implements OnInit {
     this.livraisonService.changeEtat(bodyLivreur, id).subscribe()
     this.tabIdCom.forEach(elt => {
       const bodyCom = {'etat': 'annuler'}
-      this.commandeService.changeEtat(bodyCom, elt).subscribe(
-        com => {this.router.navigate(['/admin/livraisons'])}
-      )
+      this.commandeService.changeEtat(bodyCom, elt).subscribe()
+      this.router.navigate(['/admin/livraisons'])
     });
     
   }

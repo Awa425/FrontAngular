@@ -30,7 +30,6 @@ const routes: Routes = [
         
       {
         path: 'livraisons', 
-        component: LivraisonsComponent,
         children: [
             {path: ':id', component: DetailLivraisonComponent},
             {path: 'livreur/:id', component: DetailLivreurComponent},
@@ -40,7 +39,6 @@ const routes: Routes = [
 
       {
         path: 'produits',
-        component: ListProduitsComponent,
         children: [
           {path: 'new', component: AddComponent},
           {path: '', component: ListProduitsComponent}

@@ -12,9 +12,10 @@ import { DetailLivreurComponent } from './admin/livraisons/detail-livreur/detail
 import { AddComponent } from './admin/produits/add/add.component';
 import { ListProduitsComponent } from './admin/produits/list-produits/list-produits.component';
 import { AdminComponent } from './admin/admin.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ListeLivraisonsComponent } from './admin/livraisons/liste-livraisons/liste-livraisons.component';
+import { HttpClientModule } from '@angular/common/http';
 // import { DetailAdminCommComponent } from './admin/commandes/detail-admin-comm/detail-admin-comm.component';
 
 
@@ -37,6 +38,8 @@ import { ListeLivraisonsComponent } from './admin/livraisons/liste-livraisons/li
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
     Ng2SearchPipeModule,
     AdminRoutingModule
   ]

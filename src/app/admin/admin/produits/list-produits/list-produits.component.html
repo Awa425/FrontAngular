@@ -1,4 +1,12 @@
-<div  *ngFor="let produit of produits">
+<div class="section-header">
+    <h2>Espace admin</h2>
+    <p>Ajouter <span>Vos Burgers</span>  ici</p>
+</div> <br>
+
+<div >
+     <div class="section-header">
+        <h2>Liste des burgers</h2>
+      </div>
     <table class="table container" >
         <thead>
         <tr>
@@ -9,7 +17,92 @@
         </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let p of produit" >     
+            <tr *ngFor="let p of burger | filter: searchText">     
+                <td>{{p.nom}}</td>
+                <td>{{p.prix}}</td>
+                <td *ngIf="p.etat=='1'">oui</td>
+                <td *ngIf="p.etat=='0'">nom</td>
+                <td class="text-center">
+                    <a class="btn btn-outline-warning" >Detail</a>
+                    <a class="btn btn-outline-danger">Annuler</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br><br><br>
+</div>
+
+<div >
+    <div class="section-header">
+        <h2>Liste des Menus</h2>
+    </div>
+    <table class="table container" >
+        <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Disponible</th>
+            <th scope="col" colspan="2" class="text-center">Options</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of menu | filter: searchText">     
+                <td>{{p.nom}}</td>
+                <td>{{p.prix}}</td>
+                <td *ngIf="p.etat=='1'">oui</td>
+                <td *ngIf="p.etat=='0'">nom</td>
+                <td class="text-center">
+                    <a class="btn btn-outline-warning" >Detail</a>
+                    <a class="btn btn-outline-danger">Annuler</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br><br><br>
+</div>
+<div >
+    <div class="section-header">
+        <h2>Liste des Fritte</h2>
+    </div>
+    <table class="table container" >
+        <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Disponible</th>
+            <th scope="col" colspan="2" class="text-center">Options</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of fritte | filter: searchText">     
+                <td>{{p.nom}}</td>
+                <td>{{p.prix}}</td>
+                <td *ngIf="p.etat=='1'">oui</td>
+                <td *ngIf="p.etat=='0'">nom</td>
+                <td class="text-center">
+                    <a class="btn btn-outline-warning" >Detail</a>
+                    <a class="btn btn-outline-danger">Annuler</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br><br><br>
+</div>
+<div >
+    <div class="section-header">
+        <h2>Liste des Boissons</h2>
+    </div>
+    <table class="table container" >
+        <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Disponible</th>
+            <th scope="col" colspan="2" class="text-center">Options</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let p of boisson | filter: searchText">     
                 <td>{{p.nom}}</td>
                 <td>{{p.prix}}</td>
                 <td *ngIf="p.etat=='1'">oui</td>

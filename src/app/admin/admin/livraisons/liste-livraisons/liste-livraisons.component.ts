@@ -22,6 +22,7 @@ export class ListeLivraisonsComponent implements OnInit {
   etatLivreur!: any;
   filtreLivreurDispo: string=''
   filtreLivreurNonDispo: string=''
+  filtreEtatLivraison: string=''
   filtreZone: string=''
   nomLivreur: string=''
   prenomLivreur: string=''
@@ -31,6 +32,7 @@ export class ListeLivraisonsComponent implements OnInit {
     this.filtreLivreurDispo = 'oui' 
     this.filtreZone = 'valider'
     this.filtreLivreurNonDispo = 'non'
+    this.filtreEtatLivraison = 'etape 1'
 
     this.livraisonService.getZones().subscribe(
       data=>{
@@ -44,16 +46,15 @@ export class ListeLivraisonsComponent implements OnInit {
       }
     )
     
-
     this.livraisonService.getLivraisons().subscribe(
       livraison =>{
         this.tabLivraison = livraison        
       }
     )
-
   }
  
   // ****************** FUNCTION ***********************
+
   getIdCheck(e: any, idProduit: number){
       if (e.target.checked) {
         if (!this.tabIdProd.includes(idProduit)) {
@@ -102,11 +103,8 @@ export class ListeLivraisonsComponent implements OnInit {
           this.tabIdProd.forEach(elt => {
           this.commandeService.changeEtat(this.etatCom,elt).subscribe();
         })
-        this.commandeService.changeEtatLivreur(this.etatLivreur,this.myLivreur).subscribe(
-          result => {window.location.reload()}
-        );
-
-        this.router.navigate(['/admin/livraisons'])
+        this.commandeService.changeEtatLivreur(this.etatLivreur,this.myLivreur).subscribe();
+        this.router.navigate(['/admin/commandes'])
       } 
     });  
   }

@@ -11,7 +11,6 @@ import { CatalogueComponent } from './produits/catalogue/catalogue.component';
 import { CardComponent } from './produits/catalogue/card/card.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { AddComponent } from './produits/add/add.component';
 import { DetailComponent } from './produits/detail/detail.component';
 import { StoreModule } from '@ngrx/store';
 import { PanierComponent } from './panier/panier.component';
@@ -35,7 +34,6 @@ import { DetailAdminCommComponent } from './admin/admin/commandes/detail-admin-c
     CarouselComponent,
     CatalogueComponent,
     CardComponent,
-    AddComponent,
     DetailComponent,
     PanierComponent,
     CommandeComponent,
@@ -62,7 +60,6 @@ import { DetailAdminCommComponent } from './admin/admin/commandes/detail-admin-c
     CarouselComponent,
     CatalogueComponent,
     CardComponent,
-    AddComponent,
     DetailComponent,
     PanierComponent,
     CommandeComponent,

@@ -12,9 +12,11 @@ export class ListProduitsComponent implements OnInit {
   menu: any[] = []
   fritte: any[] = []
   boisson: any[] = []
+  searchText: string = ''
   constructor(private catalogueService: CatalogueService) { }
 
   ngOnInit(): void {
+    this.searchText = 'oui'
     this.catalogueService.getProduits().subscribe(
       produits => {
         for (let i = 0; i < produits.length; i++) {

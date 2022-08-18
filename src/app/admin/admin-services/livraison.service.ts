@@ -28,6 +28,12 @@ export class LivraisonService {
   changeEtat(body: any, id: number):Observable<any>{
     return this.http.put<any>('http://127.0.0.1:8000/api/livreurs/'+id, body)
   }
+  changeEtatLivraison(body: any, id: number):Observable<any>{
+    return this.http.put<any>('http://127.0.0.1:8000/api/livraisons/'+id, body)
+  }
+  addBurger(body: any): Observable<any> {
+    return this.http.post<any>('http://127.0.0.1:8000/api/burgers', body)
+  }
  
   
 }
