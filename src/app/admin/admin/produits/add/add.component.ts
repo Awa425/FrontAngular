@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LivraisonService } from 'src/app/admin/admin-services/livraison.service';
 import { CatalogueService } from 'src/app/service/catalogue.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add',
@@ -10,7 +11,7 @@ import { CatalogueService } from 'src/app/service/catalogue.service';
   styleUrls: ['./add.component.css']
 })
 export class AddComponent implements OnInit {
-  typeProduit!: string
+  typeProduit: string='';
     imageSrc!: string;
     myForm = new FormGroup({
       nom: new FormControl(),
@@ -27,8 +28,9 @@ export class AddComponent implements OnInit {
 
   // ************** FUNCTIONS ******************
   typeChoice(e: any){
-    console.log(this.typeProduit);
-    this.typeProduit=e;    
+    this.typeProduit=e.value; 
+    console.log(e.value);
+    //  return;  
   }
 
   get f(){
@@ -50,9 +52,17 @@ export class AddComponent implements OnInit {
   }
 
   submit(){
-    
-    this.livraisonService.addBurger(this.myForm.value).subscribe()
-      this.router.navigate(['/admin/produits/new'])
+    if (this.typeProduit!='') {
+      this.livraisonService.addBurger(this.myForm.value, this.typeProduit).subscribe()
+        this.router.navigate(['/admin/produits/new'])   
+    }
+    else{
+      Swal.fire({
+        html: 'Veuillez choisir un type',
+        icon: 'error',
+        timer: 2000
+      })
+    }
   }
 
 }

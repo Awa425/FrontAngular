@@ -1,10 +1,10 @@
 <div >
-    <select>
-        <option><a >Veuillez choisit le type de produit</a></option>
-        <option><a (click)="typeChoice('burger')" >burger</a></option>
-        <option><a (click)="typeChoice('fritte')">Fritte</a></option>
-        <option><a (click)="typeChoice('boisson')">Boisson</a></option>
-        <option><a (click)="typeChoice('menu')">Menu</a></option>
+    <select #type (click)="typeChoice(type)">
+        <option>Veuillez choisit le type de produit</option>
+        <option value="burgers">burger</option>
+        <option value="frittes">Fritte</option>
+        <option value="boissons">Boisson</option>
+        <option value="menus">Menu</option>
     </select>
 </div>
 <section id="book-a-table" class="book-a-table">
